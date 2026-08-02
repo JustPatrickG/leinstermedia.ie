@@ -4,36 +4,504 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Contact — Leinster Media</title>
-  <meta name="description" content="Get in touch with Leinster Media about your listings." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --fg-mid: #9a9a9a;
+      --fg-dim: #6b6b6b;
+      --fg-faint: #1e1e1e;
+      --fg-faint2: #333;
+      --ac: #c8f04a;
+      --font: 'IBM Plex Mono', ui-monospace, monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; background: var(--bg); color: var(--fg); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+    /* ── Shell ── */
+    .shell {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+    }
+
+    /* ── Header row ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--fg-dim);
+      text-decoration: none;
+    }
+
+    .progress {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--fg-dim);
+    }
+
+    .progress span {
+      color: var(--fg);
+    }
+
+    /* ── Step ── */
+    .step { display: none; flex-direction: column; gap: 2rem; }
+    .step.active { display: flex; }
+
+    .step-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    .step-question {
+      font-size: clamp(1.3rem, 4vw, 1.65rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Inputs ── */
+    .fields { display: flex; flex-direction: column; gap: 1rem; }
+
+    .field { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .field-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"] {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--fg-faint2);
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+      padding: 0.6rem 0;
+      width: 100%;
+      outline: none;
+      transition: border-color 200ms ease;
+      -webkit-appearance: none;
+    }
+
+    input:focus { border-color: var(--fg); }
+    input::placeholder { color: var(--fg-faint2); }
+
+    /* number input — hide arrows */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+    input[type="number"] { -moz-appearance: textfield; }
+
+    /* ── Toggle options (step 4) ── */
+    .toggles { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .toggle-btn {
+      background: transparent;
+      border: 1px solid var(--fg-faint2);
+      color: var(--fg-mid);
+      font-family: var(--font);
+      font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+      letter-spacing: 0.02em;
+      padding: 1rem 1.2rem;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .toggle-btn::before {
+      content: '';
+      width: 14px; height: 14px;
+      border: 1px solid var(--fg-faint2);
+      flex-shrink: 0;
+      transition: background 200ms ease, border-color 200ms ease;
+    }
+
+    .toggle-btn.on {
+      border-color: var(--ac);
+      color: var(--fg);
+    }
+
+    .toggle-btn.on::before {
+      background: var(--ac);
+      border-color: var(--ac);
+    }
+
+    /* ── Next button ── */
+    .next-btn {
+      background: transparent;
+      border: 1px solid var(--fg-faint2);
+      color: var(--fg-mid);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 1.6rem;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: border-color 200ms ease, color 200ms ease;
+    }
+
+    .next-btn:hover { border-color: var(--fg); color: var(--fg); }
+
+    .next-btn.primary {
+      border-color: var(--ac);
+      color: var(--ac);
+    }
+
+    .next-btn.primary:hover { background: var(--ac); color: var(--bg); }
+
+    /* ── Progress bar ── */
+    .bar-wrap {
+      width: 100%;
+      height: 1px;
+      background: var(--fg-faint);
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--ac);
+      transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── Done screen ── */
+    .done {
+      display: none;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .done.active { display: flex; }
+
+    .done-heading {
+      font-size: clamp(1.3rem, 4vw, 1.65rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .done-text {
+      font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+      color: var(--fg-mid);
+      line-height: 1.7;
+    }
+
+    .done-ac { color: var(--ac); }
+
+    /* ── Sending state ── */
+    .send-status {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--fg-dim);
+      min-height: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .shell { justify-content: flex-start; padding-top: 3rem; }
+    }
+  </style>
 </head>
 <body>
-  <div class="loader" id="loader"><h1 class="title" id="loaderTitle">Leinster Media</h1></div>
-  <a class="back-link" href="index.html">&larr; back</a>
-  <main class="screen" id="screen">
-    <div class="contact-wrap">
-      <div class="section">
-        <span class="eyebrow">Get in touch</span>
-        <h1 class="section-heading">Let's talk about your listings</h1>
-        <p class="body-text">Whether you want to trial a free shoot on one listing or discuss a full monthly retainer, drop a message and we'll get back to you the same day.</p>
-      </div>
-      <div class="section">
-        <a class="cta-link" href="mailto:contact@leinstermedia.ie">contact@leinstermedia.ie &rarr;</a>
-      </div>
+
+<div class="shell">
+  <div class="card">
+
+    <!-- Header -->
+    <div class="card-header">
+      <a class="brand" href="index.html">Leinster Media</a>
+      <span class="progress" id="progressLabel"><span id="progressCurrent">1</span> / 4</span>
     </div>
-  </main>
-  <script src="brand.js"></script>
-  <script>
-    const loader = document.getElementById('loader');
-    const loaderTitle = document.getElementById('loaderTitle');
-    const screenEl = document.getElementById('screen');
-    growBrandTitle(loaderTitle, () => {
-      setTimeout(() => { loader.classList.add('fade-out'); screenEl.classList.add('show'); setTimeout(() => loader.remove(), 480); }, 500);
+
+    <!-- Progress bar -->
+    <div class="bar-wrap">
+      <div class="bar-fill" id="barFill" style="width:25%"></div>
+    </div>
+
+    <!-- Step 1: Name + Phone -->
+    <div class="step active" id="step-1">
+      <div>
+        <p class="step-label">Let's start</p>
+        <h2 class="step-question">What's your name and the best number to reach you on?</h2>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label class="field-label" for="name">Your name</label>
+          <input type="text" id="name" placeholder="e.g. John Murphy" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="phone">Phone number</label>
+          <input type="tel" id="phone" placeholder="e.g. 085 123 4567" autocomplete="tel" />
+        </div>
+      </div>
+      <button class="next-btn" onclick="next(1)">Next &rarr;</button>
+    </div>
+
+    <!-- Step 2: Business name -->
+    <div class="step" id="step-2">
+      <div>
+        <p class="step-label">Your agency</p>
+        <h2 class="step-question">What's the name of your estate agency?</h2>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label class="field-label" for="business">Agency name</label>
+          <input type="text" id="business" placeholder="e.g. Murphy Property" />
+        </div>
+      </div>
+      <button class="next-btn" onclick="next(2)">Next &rarr;</button>
+    </div>
+
+    <!-- Step 3: Listings -->
+    <div class="step" id="step-3">
+      <div>
+        <p class="step-label">Your listings</p>
+        <h2 class="step-question">How many listings do you have on right now, and how many do you take on each month?</h2>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label class="field-label" for="active">Active listings right now</label>
+          <input type="number" id="active" placeholder="e.g. 12" min="0" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="monthly">New listings per month</label>
+          <input type="number" id="monthly" placeholder="e.g. 4" min="0" />
+        </div>
+      </div>
+      <button class="next-btn" onclick="next(3)">Next &rarr;</button>
+    </div>
+
+    <!-- Step 4: Marketing -->
+    <div class="step" id="step-4">
+      <div>
+        <p class="step-label">Your marketing</p>
+        <h2 class="step-question">What are you already doing to market your listings?</h2>
+      </div>
+      <div class="toggles">
+        <button class="toggle-btn" id="tog-organic" onclick="toggle('organic')">We post on social media organically</button>
+        <button class="toggle-btn" id="tog-paid" onclick="toggle('paid')">We run paid ads</button>
+        <button class="toggle-btn" id="tog-neither" onclick="toggle('neither')">Neither — we don't do much marketing</button>
+        <button class="toggle-btn" id="tog-other" onclick="toggleOther()">Other</button>
+      </div>
+      <div id="other-wrap" style="display:none;padding-top:0.4rem">
+        <input type="text" id="other-text" placeholder="Tell us what you're doing…" />
+      </div>
+      <button class="next-btn primary" onclick="next(4)">Submit &rarr;</button>
+    </div>
+
+    <!-- Done -->
+    <div class="done" id="done">
+      <h2 class="done-heading">We'll be in touch <span class="done-ac">within 24 hours.</span></h2>
+      <p class="done-text">Thanks for getting in touch. We'll give you a call to chat through how we can help with your listings.</p>
+      <p class="send-status" id="sendStatus"></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── EmailJS config ──────────────────────────────────────────────
+  // Replace these with your actual EmailJS values after signing up
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const TO_EMAIL = 'contact@leinstermedia.ie';
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  // ── State ───────────────────────────────────────────────────────
+  const SESSION_ID = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  const data = { name:'', phone:'', business:'', active:'', monthly:'', organic: false, paid: false, neither: false, other: '' };
+  let currentStep = 1;
+  let sendTimer = null;
+  let sent = false;
+  const TOTAL = 4;
+  const DELAY_MS = 5 * 60 * 1000; // 5 minutes
+
+  // ── Navigation ─────────────────────────────────────────────────
+  async function next(from) {
+    collectStep(from);
+    await saveLead(from === TOTAL);
+
+    if (from === TOTAL) {
+      showDone();
+      return;
+    }
+
+    document.getElementById(`step-${from}`).classList.remove('active');
+    currentStep = from + 1;
+    document.getElementById(`step-${currentStep}`).classList.add('active');
+    updateProgress();
+    scrollToTop();
+  }
+
+  function collectStep(step) {
+    if (step === 1) {
+      data.name  = document.getElementById('name').value.trim();
+      data.phone = document.getElementById('phone').value.trim();
+    } else if (step === 2) {
+      data.business = document.getElementById('business').value.trim();
+    } else if (step === 3) {
+      data.active  = document.getElementById('active').value.trim();
+      data.monthly = document.getElementById('monthly').value.trim();
+    }
+    // step 4 toggles are tracked live — other text collected on submit
+    if (step === 4) {
+      data.other = document.getElementById('other-text').value.trim();
+    }
+  }
+
+  function toggle(key) {
+    data[key] = !data[key];
+    document.getElementById(`tog-${key}`).classList.toggle('on', data[key]);
+  }
+
+  function updateProgress() {
+    document.getElementById('progressCurrent').textContent = currentStep;
+    const pct = (currentStep / TOTAL) * 100;
+    document.getElementById('barFill').style.width = pct + '%';
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showDone() {
+    document.getElementById(`step-${TOTAL}`).classList.remove('active');
+    document.getElementById('progressLabel').style.display = 'none';
+    document.getElementById('barFill').style.width = '100%';
+    document.getElementById('done').classList.add('active');
+
+    // Lead already saved via saveLead(true), just fire email
+    clearTimeout(sendTimer);
+    sendEmail('complete');
+  }
+
+  // ── Email ───────────────────────────────────────────────────────
+  async function saveLead(complete) {
+    const lead = {
+      id: SESSION_ID,
+      sessionId: SESSION_ID,
+      status: 'waiting',
+      name: data.name,
+      phone: data.phone,
+      business: data.business,
+      active: data.active,
+      monthly: data.monthly,
+      organic: data.organic,
+      paid: data.paid,
+      neither: data.neither,
+      other: data.other,
+      step: currentStep,
+      complete: complete,
+      ts: new Date().toISOString()
+    };
+
+    try {
+      await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead)
+      });
+    } catch(e) {
+      console.error('Lead POST failed:', e);
+    }
+
+    // Also email if complete or after delay
+    scheduleEmail();
+  }
+
+  function scheduleEmail() {
+    clearTimeout(sendTimer);
+    if (sent) return;
+    sendTimer = setTimeout(() => sendEmail('partial'), DELAY_MS);
+  }
+
+  function buildBody(type) {
+    const lines = [
+      `Type: ${type === 'complete' ? 'Complete submission' : 'Partial submission (dropped off)'}`,
+      ``,
+      `Name:    ${data.name    || '—'}`,
+      `Phone:   ${data.phone   || '—'}`,
+      `Agency:  ${data.business|| '—'}`,
+      `Active listings:     ${data.active  || '—'}`,
+      `New listings/month:  ${data.monthly || '—'}`,
+      `Posts organically:   ${data.organic ? 'Yes' : 'No'}`,
+      `Runs paid ads:       ${data.paid    ? 'Yes' : 'No'}`,
+      `Neither:             ${data.neither ? 'Yes' : 'No'}`,
+      `Other:               ${data.other   || '—'}`,
+    ];
+    return lines.join('\n');
+  }
+
+  function sendEmail(type) {
+    if (sent) return;
+    sent = true;
+
+    const status = document.getElementById('sendStatus');
+    if (status) status.textContent = 'Sending…';
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email: TO_EMAIL,
+      subject: type === 'complete'
+        ? `New lead — ${data.name || 'Unknown'} (${data.business || 'Unknown agency'})`
+        : `Partial lead — ${data.name || 'Unknown'} dropped off at step ${currentStep}/${TOTAL}`,
+      message: buildBody(type),
+    }).then(() => {
+      if (status) status.textContent = '';
+    }).catch((err) => {
+      console.error('EmailJS error:', err);
+      if (status) status.textContent = '';
     });
-  </script>
+  }
+
+  function toggleOther() {
+    data.other = data.other === null ? '' : null; // just used as a flag here
+    const btn = document.getElementById('tog-other');
+    const wrap = document.getElementById('other-wrap');
+    const isOn = btn.classList.toggle('on');
+    wrap.style.display = isOn ? 'block' : 'none';
+    if (isOn) document.getElementById('other-text').focus();
+  }
+
+  // Fire partial send if they close/navigate away
+  window.addEventListener('pagehide', () => {
+    if (data.name) {
+      saveLead(false);
+      if (!sent) {
+        clearTimeout(sendTimer);
+        sendEmail('partial');
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
