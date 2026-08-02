@@ -16,21 +16,29 @@
 }
 *{-webkit-font-smoothing:antialiased}
 html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fn);font-size:14px;line-height:1.5}
+
+/* AUTH SCREENS */
+.auth{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;z-index:999;padding:24px}
+.auth-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.auth-hint{font-size:12px;color:var(--sub);text-align:center;max-width:300px;line-height:1.5}
+.auth-err{font-size:12px;color:var(--red);min-height:16px}
+
+/* SHELL */
 .shell{display:flex;height:100vh;overflow:hidden}
 
-/* ── SIDEBAR ── */
+/* SIDEBAR */
 .side{width:200px;min-width:200px;background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column}
-.side-logo{padding:16px;font-size:13px;font-weight:700;letter-spacing:-.01em;border-bottom:1px solid var(--bdr);color:var(--tx)}
+.side-logo{padding:16px;font-size:13px;font-weight:700;border-bottom:1px solid var(--bdr)}
 .side-logo small{font-weight:400;color:var(--sub)}
-.side-nav{flex:1;padding:8px 0}
-.sn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 14px;font:500 13px/1 var(--fn);color:var(--sub);background:none;border:none;cursor:pointer;text-align:left;border-radius:0;position:relative;transition:color .1s,background .1s}
+.side-nav{flex:1;padding:8px 0;overflow-y:auto}
+.sn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 14px;font:500 13px/1 var(--fn);color:var(--sub);background:none;border:none;cursor:pointer;text-align:left;position:relative;transition:color .1s,background .1s}
 .sn:hover{color:var(--tx);background:var(--sur2)}
 .sn.on{color:var(--tx);background:var(--acs)}
 .sn.on::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--ac);border-radius:2px}
 .sn-ico{width:16px;text-align:center;font-size:13px;flex-shrink:0}
-.side-foot{padding:12px 14px;border-top:1px solid var(--bdr);font-size:11.5px;color:var(--sub)}
+.side-foot{padding:12px 14px;border-top:1px solid var(--bdr);font-size:11px;color:var(--sub);line-height:1.6}
 
-/* ── MAIN ── */
+/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:50px;border-bottom:1px solid var(--bdr);background:var(--bg);flex-shrink:0;gap:10px}
 .tb-l{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
@@ -42,10 +50,10 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fn)
 .tb-r{display:flex;gap:6px;flex-shrink:0}
 .content{flex:1;overflow-y:auto;padding:20px}
 
-/* ── PAGES ── */
+/* PAGES */
 .pg{display:none}.pg.on{display:block}
 
-/* ── BUTTONS ── */
+/* BUTTONS */
 .btn{font:500 13px var(--fn);padding:6px 12px;border-radius:6px;border:1px solid var(--bdr2);background:var(--sur2);color:var(--tx);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;transition:border-color .1s,background .1s}
 .btn:hover{border-color:var(--sub)}
 .btn.pri{background:var(--ac);border-color:var(--ac);color:#fff}
@@ -57,24 +65,24 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fn)
 .btn.sm{font-size:12px;padding:5px 10px}
 .btn.xs{font-size:11px;padding:3px 8px}
 
-/* ── PILLS ── */
+/* PILLS */
 .pill{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;border:1px solid;white-space:nowrap}
 .grn{color:var(--grn);border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.08)}
 .amb{color:var(--amb);border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.08)}
 .red{color:var(--red);border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.08)}
 .dim{color:var(--sub);border-color:var(--bdr2);background:var(--sur2)}
 
-/* ── CARD ── */
+/* CARD */
 .card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:10px}
-.card-hd{font-size:10.5px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.card-hd{font-size:10.5px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 
-/* ── KPI ROW ── */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:16px}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:16px}
 .kpi{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:14px 16px}
 .kpi-l{font-size:11.5px;color:var(--sub);margin-bottom:4px}
 .kpi-v{font-size:22px;font-weight:700;letter-spacing:-.03em}
 
-/* ── TABLE ── */
+/* TABLE */
 .tbl{width:100%;border-collapse:collapse}
 .tbl th{font-size:10.5px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:0 0 9px;border-bottom:1px solid var(--bdr)}
 .tbl td{padding:10px 0;border-bottom:1px solid var(--bdr);vertical-align:middle;font-size:13.5px}
@@ -82,31 +90,25 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fn)
 .tbl tr.row{cursor:pointer}
 .tbl tr.row:hover td{color:var(--tx)}
 
-/* ── HOUSE ROW (inside client) ── */
+/* HOUSE ROW */
 .house-row{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--bdr);gap:12px;cursor:pointer}
 .house-row:last-child{border-bottom:none}
-.house-row:hover .house-addr{color:var(--tx)}
-.house-addr{font-size:13.5px;font-weight:500;color:var(--tx);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.house-addr{font-size:13.5px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .house-dates{display:flex;gap:16px;flex-shrink:0;font-size:12px}
 .hd-item{display:flex;flex-direction:column;align-items:flex-end;gap:1px}
 .hd-label{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.05em}
 .hd-val{font-size:12.5px;font-weight:500}
-.hd-val.ov{color:var(--red)}
-.hd-val.so{color:var(--amb)}
-.hd-val.ok{color:var(--tx)}
-.hd-val.em{color:var(--dim)}
+.hd-val.ov{color:var(--red)}.hd-val.so{color:var(--amb)}.hd-val.ok{color:var(--tx)}.hd-val.em{color:var(--dim)}
 
-/* ── HOUSE DETAIL ── */
+/* HOUSE DETAIL */
 .date-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .ds{background:var(--sur2);border:1px solid var(--bdr);border-radius:6px;padding:12px}
 .ds-l{font-size:10px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
 .ds-v{font-size:16px;font-weight:700;letter-spacing:-.02em}
-.ds-v.ov{color:var(--red)}
-.ds-v.so{color:var(--amb)}
-.ds-v.em{color:var(--dim);font-size:13px;font-weight:400}
+.ds-v.ov{color:var(--red)}.ds-v.so{color:var(--amb)}.ds-v.em{color:var(--dim);font-size:13px;font-weight:400}
 .ds-rel{font-size:11px;color:var(--sub);margin-top:3px}
 
-/* ── TASK / CHECK ── */
+/* TASK */
 .task{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bdr)}
 .task:last-child{border-bottom:none}
 .chk{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--bdr2);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .1s}
@@ -116,47 +118,12 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fn)
 .task-tx{flex:1;font-size:13px;min-width:0}
 .task-tx.done{text-decoration:line-through;color:var(--sub)}
 
-/* ── VIDEO CARDS ── */
-.vid-card{border:1px solid var(--bdr2);border-radius:7px;padding:14px;margin-bottom:8px;background:var(--sur2)}
-.vid-card:last-child{margin-bottom:0}
-.vid-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
-.vid-card-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
-.vid-card-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;margin-bottom:10px}
-.vid-meta-item{display:flex;flex-direction:column;gap:2px}
-.vid-meta-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--sub)}
-.vid-meta-val{font-size:13px;font-weight:500}
-.vid-meta-val.ov{color:var(--red)}
-.vid-meta-val.so{color:var(--amb)}
-.vid-notes-toggle{font-size:12px;color:var(--sub);background:none;border:none;cursor:pointer;padding:0;font-family:var(--fn);display:flex;align-items:center;gap:4px}
-.vid-notes-toggle:hover{color:var(--tx)}
-.vid-notes-body{margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr);display:none}
-.vid-notes-body.open{display:block}
-.vid-notes-text{font-size:13px;line-height:1.7;color:var(--tx);white-space:pre-wrap;word-break:break-word}
+/* VIDEO */
+.vid{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bdr);font-size:13px}
+.vid:last-child{border-bottom:none}
+.vid-name{flex:1}.vid-name.done{text-decoration:line-through;color:var(--sub)}
 
-/* ── STORYBOARDS & EXAMPLES ── */
-.media-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--bdr)}
-.media-hd{font-size:10.5px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.sb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:8px}
-.sb-img{position:relative;aspect-ratio:16/9;border-radius:5px;overflow:hidden;border:1px solid var(--bdr2);background:var(--sur2)}
-.sb-img img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
-.sb-img-del{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.75);border:none;color:#fff;font-size:11px;cursor:pointer;width:20px;height:20px;border-radius:4px;display:none;align-items:center;justify-content:center;line-height:1}
-.sb-img:hover .sb-img-del{display:flex}
-.sb-add{border:1.5px dashed var(--bdr2);border-radius:5px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;color:var(--sub);cursor:pointer;transition:border-color .1s,color .1s;aspect-ratio:16/9}
-.sb-add:hover{border-color:var(--ac);color:var(--tx)}
-.ex-link{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bdr);font-size:13px}
-.ex-link:last-child{border-bottom:none}
-.ex-link-label{font-size:11.5px;color:var(--sub);flex-shrink:0;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ex-link a{color:var(--ac);text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
-.ex-link a:hover{text-decoration:underline}
-.add-link-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.add-link-row .fi{flex:1;min-width:100px}
-
-/* ── LIGHTBOX ── */
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:300;display:none;align-items:center;justify-content:center;cursor:zoom-out}
-.lb.on{display:flex}
-.lb img{max-width:90vw;max-height:90vh;border-radius:6px;object-fit:contain}
-
-/* ── FORM ── */
+/* FORM */
 .fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
 .fg label{font-size:10.5px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.06em}
 .fi{font:13px var(--fn);background:var(--sur2);border:1px solid var(--bdr2);border-radius:6px;color:var(--tx);padding:7px 10px;outline:none;width:100%;transition:border-color .1s}
@@ -165,12 +132,10 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fn)
 select.fi option{background:var(--sur2)}
 .fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-
-/* ── INLINE ADD ── */
 .add-row{display:flex;gap:6px;margin-top:10px}
 .add-row .fi{flex:1;min-width:0}
 
-/* ── MODAL ── */
+/* MODAL */
 .ovl{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
 .ovl.on{display:flex}
 .modal{background:var(--sur);border:1px solid var(--bdr2);border-radius:10px;width:100%;max-width:460px;padding:24px;position:relative;max-height:90vh;overflow-y:auto}
@@ -179,7 +144,7 @@ select.fi option{background:var(--sur2)}
 .modal-x:hover{background:var(--sur2);color:var(--tx)}
 .modal-ft{display:flex;gap:7px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--bdr)}
 
-/* ── WIZARD ── */
+/* WIZARD */
 .ws{display:none}.ws.on{display:block}
 .wq{font-size:18px;font-weight:700;letter-spacing:-.02em;margin-bottom:5px}
 .wh{font-size:13px;color:var(--sub);margin-bottom:18px}
@@ -189,31 +154,24 @@ select.fi option{background:var(--sur2)}
 .tier-btn:hover{border-color:var(--sub)}
 .tier-btn small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-top:2px}
 
-/* ── FIN ROW ── */
+/* FIN */
 .fin-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bdr);font-size:13px;gap:8px}
 .fin-row:last-child{border-bottom:none}
 .fin-pos{color:var(--grn);font-weight:600;white-space:nowrap}
 .fin-neg{color:var(--red);font-weight:600;white-space:nowrap}
 
-/* ── NOTES ── */
+/* NOTES */
 .notes{font:13px/1.65 var(--fn);background:transparent;border:none;color:var(--tx);width:100%;resize:vertical;min-height:64px;outline:none}
 .notes::placeholder{color:var(--dim)}
 
-/* ── DIVIDER ── */
 hr{border:none;border-top:1px solid var(--bdr);margin:12px 0}
-
-/* ── EMPTY ── */
 .empty{padding:24px;text-align:center;color:var(--sub);font-size:13px}
-
-/* ── G2 ── */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .span2{grid-column:1/-1}
-
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:4px}
 
-/* ── BOTTOM NAV (mobile) ── */
-#app-shell{flex:1;overflow:hidden}.bot-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--sur);border-top:1px solid var(--bdr);z-index:50}
+/* MOBILE */
+.bot-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--sur);border-top:1px solid var(--bdr);z-index:50}
 .bot-nav-inner{display:flex;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom,16px)}
 .bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;background:none;border:none;color:var(--sub);font:500 10px var(--fn);cursor:pointer;transition:color .1s;-webkit-tap-highlight-color:transparent}
 .bn.on{color:var(--ac)}
@@ -224,72 +182,45 @@ hr{border:none;border-top:1px solid var(--bdr);margin:12px 0}
   .side{display:none}
   .bot-nav{display:block}
   .house-dates{display:none}
-  .kpis{grid-template-columns:1fr 1fr}
   .content{padding:14px;padding-bottom:calc(70px + env(safe-area-inset-bottom,16px))}
   .topbar{padding:0 14px}
-  .shell{flex-direction:column}
-  .main{height:100dvh}
 }
 </style>
 </head>
 <body>
-<!-- LOGIN SCREEN -->
-<div id="login-screen" style="position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999">
-  <div style="width:100%;max-width:320px;padding:24px">
-    <div style="font-size:18px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px">Leinster Media</div>
-    <div style="font-size:13px;color:var(--sub);margin-bottom:24px">Dashboard</div>
-    <div style="margin-bottom:10px">
-      <input type="password" id="login-pw" class="fi" placeholder="Password" autofocus style="width:100%;font-size:15px;padding:10px 13px">
-    </div>
-    <div id="login-tok-wrap" style="margin-bottom:10px">
-      <input type="password" id="login-tok" class="fi" placeholder="GitHub token (first time only)" style="width:100%;font-size:13px;padding:10px 13px">
-      <div style="font-size:11.5px;color:var(--sub);margin-top:5px">Paste your token once — saved to this browser only, never in the file.</div>
-    </div>
-    <div id="login-err" style="font-size:12.5px;color:var(--red);margin-bottom:10px;min-height:18px"></div>
-    <button class="btn pri" onclick="doLogin()" style="width:100%;justify-content:center;padding:10px">Sign in</button>
-  </div>
-</div>
-
-<script>
-// Hide token field if already stored
-if (localStorage.getItem('lm_gh_token')) {
-  document.getElementById('login-tok-wrap').style.display = 'none';
-}
-</script>
 
 <!-- LOGIN -->
-<div id="login-screen" style="position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:16px">
-  <div style="font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px">Leinster Media</div>
+<div class="auth" id="login-screen">
+  <div class="auth-title">Leinster Media</div>
   <input id="lp-input" type="password" class="fi" placeholder="Password" style="width:240px;text-align:center" autocomplete="current-password">
-  <div id="lp-err" style="font-size:12px;color:var(--red);min-height:16px"></div>
+  <div class="auth-err" id="lp-err"></div>
   <button class="btn pri" onclick="tryLogin()">Sign in</button>
 </div>
 
 <!-- TOKEN -->
-<div id="token-screen" style="position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:16px;padding:24px">
-  <div style="font-size:13px;font-weight:700">GitHub token</div>
-  <div style="font-size:12.5px;color:var(--sub);text-align:center;max-width:320px">Paste your GitHub Personal Access Token once — it stays on this device.</div>
+<div class="auth" id="token-screen" style="display:none">
+  <div class="auth-title">GitHub token</div>
+  <div class="auth-hint">Paste your GitHub Personal Access Token once — stored on this device only.</div>
   <input id="tk-input" type="password" class="fi" placeholder="ghp_..." style="width:280px;font-size:11px;text-align:center">
-  <button class="btn pri" onclick="saveToken()">Save token</button>
+  <button class="btn pri" onclick="saveToken()">Save &amp; continue</button>
 </div>
 
-<div id="app-shell" style="display:none;height:100vh;width:100%;flex-direction:row">
-<div class="shell" style="display:none">
+<!-- APP -->
+<div class="shell" id="app-shell" style="display:none">
 
-<!-- SIDEBAR -->
 <nav class="side">
   <div class="side-logo">Leinster Media <small>os</small></div>
   <div class="side-nav">
-    <button class="sn on" data-p="overview" onclick="go('overview')"><span class="sn-ico">▦</span>Dashboard</button>
-    <button class="sn" data-p="clients" onclick="go('clients')"><span class="sn-ico">◎</span>Clients</button>
+    <button class="sn on" data-p="overview" onclick="go('overview')"><span class="sn-ico">◦</span>Dashboard</button>
+    <button class="sn" data-p="leads" onclick="go('leads')"><span class="sn-ico">◎</span>Leads</button>
+    <button class="sn" data-p="clients" onclick="go('clients')"><span class="sn-ico">⊕</span>Clients</button>
     <button class="sn" data-p="schedule" onclick="go('schedule')"><span class="sn-ico">◫</span>Schedule</button>
     <button class="sn" data-p="editors" onclick="go('editors')"><span class="sn-ico">✎</span>Editors</button>
     <button class="sn" data-p="finances" onclick="go('finances')"><span class="sn-ico">◈</span>Finances</button>
   </div>
-  <div class="side-foot">Patrick · owner<br><span id="sync-status" style="font-size:11px">⟳ Loading…</span></div>
+  <div class="side-foot">owner<br><span id="sync-status">⟳ Loading…</span></div>
 </nav>
 
-<!-- MAIN -->
 <div class="main">
   <div class="topbar">
     <div class="tb-l">
@@ -304,8 +235,8 @@ if (localStorage.getItem('lm_gh_token')) {
     <!-- DASHBOARD -->
     <div class="pg on" id="pg-overview">
       <div class="kpis">
-        <div class="kpi"><div class="kpi-l">Clients</div><div class="kpi-v" id="kv-c">0</div></div>
         <div class="kpi" style="cursor:pointer" onclick="go('leads')"><div class="kpi-l">Waiting leads</div><div class="kpi-v" id="kv-l" style="color:var(--amb)">0</div></div>
+        <div class="kpi"><div class="kpi-l">Clients</div><div class="kpi-v" id="kv-c">0</div></div>
         <div class="kpi"><div class="kpi-l">Live houses</div><div class="kpi-v" id="kv-h">0</div></div>
         <div class="kpi"><div class="kpi-l">Shoots this month</div><div class="kpi-v" id="kv-s">0</div></div>
         <div class="kpi"><div class="kpi-l">Net income</div><div class="kpi-v" id="kv-n">€0</div></div>
@@ -315,6 +246,9 @@ if (localStorage.getItem('lm_gh_token')) {
         <div class="card" style="margin-bottom:0"><div class="card-hd">Open tasks</div><div id="ov-tk"></div></div>
       </div>
     </div>
+
+    <!-- LEADS -->
+    <div class="pg" id="pg-leads"><div id="leads-body"></div></div>
 
     <!-- CLIENTS LIST -->
     <div class="pg" id="pg-clients"><div id="cl-body"></div></div>
@@ -372,45 +306,36 @@ if (localStorage.getItem('lm_gh_token')) {
           <div style="font-size:12.5px;color:var(--sub);margin-top:3px" id="h-sub"></div>
         </div>
         <div style="display:flex;gap:6px">
-          <button class="btn sm" onclick="openHouseModal(true)">Edit shoot date</button>
+          <button class="btn sm" onclick="openHouseModal(true)">Edit</button>
           <button class="btn sm" id="h-sold-btn" onclick="toggleSold()">Mark sold</button>
           <button class="btn danger sm" onclick="delHouse()">Delete</button>
         </div>
       </div>
-
-      <!-- shoot date strip — just one date at house level -->
-      <div style="margin-bottom:14px">
-        <div class="ds" style="max-width:220px">
-          <div class="ds-l">📹 Shoot date</div>
-          <div class="ds-v" id="h-shoot">—</div>
-          <div class="ds-rel" id="h-shoot-r"></div>
+      <div class="date-strip">
+        <div class="ds"><div class="ds-l">📹 Shoot date</div><div class="ds-v" id="h-shoot">—</div><div class="ds-rel" id="h-shoot-r"></div></div>
+        <div class="ds"><div class="ds-l">🎬 Editor deadline</div><div class="ds-v" id="h-edue">—</div><div class="ds-rel" id="h-edue-r"></div></div>
+        <div class="ds"><div class="ds-l">🚀 Go live</div><div class="ds-v" id="h-live">—</div><div class="ds-rel" id="h-live-r"></div></div>
+      </div>
+      <div class="g2">
+        <div class="card"><div class="card-hd">Editor</div><div id="h-editor-wrap"></div></div>
+        <div class="card">
+          <div class="card-hd">Videos</div>
+          <div id="h-vids"></div>
+          <div class="add-row">
+            <input class="fi" type="text" id="vtxt" placeholder="e.g. House tour" onkeydown="if(event.key==='Enter')addVid()">
+            <button class="btn sm pri" onclick="addVid()">Add</button>
+          </div>
         </div>
-      </div>
-
-      <!-- videos -->
-      <div class="card">
-        <div class="card-hd">Videos <button class="btn xs pri" onclick="openVM()">+ Add video</button></div>
-        <div id="h-vids"></div>
-      </div>
-
-      <!-- tasks -->
-      <div class="card">
-        <div class="card-hd">Tasks</div>
-        <div id="h-tasks"></div>
-        <div class="add-row">
-          <input class="fi" type="text" id="htxt" placeholder="Add task..." onkeydown="if(event.key==='Enter')addHTask()">
-          <input class="fi" type="date" id="hdue" style="width:130px;flex:none">
-          <button class="btn sm pri" onclick="addHTask()">Add</button>
+        <div class="card">
+          <div class="card-hd">Tasks</div>
+          <div id="h-tasks"></div>
+          <div class="add-row">
+            <input class="fi" type="text" id="htxt" placeholder="Add task..." onkeydown="if(event.key==='Enter')addHTask()">
+            <input class="fi" type="date" id="hdue" style="width:130px;flex:none">
+            <button class="btn sm pri" onclick="addHTask()">Add</button>
+          </div>
         </div>
-      </div>
-    </div>
-
-
-    <!-- LEADS -->
-    <div class="pg" id="pg-leads">
-      <div class="card">
-        <div class="card-hd">Leads <span id="leads-count" class="badge" style="display:inline-flex"></span></div>
-        <div id="leads-body"></div>
+        <div class="card"><div class="card-hd">Notes</div><textarea class="notes" id="h-notes" placeholder="Access code, shot list, agent requests..." oninput="saveHNotes()"></textarea></div>
       </div>
     </div>
 
@@ -423,10 +348,7 @@ if (localStorage.getItem('lm_gh_token')) {
         <div class="card-hd">Editors <button class="btn xs pri" onclick="addEditor()">+ Add</button></div>
         <div id="ed-list"></div>
       </div>
-      <div class="card">
-        <div class="card-hd">Current workload</div>
-        <div id="ed-load"></div>
-      </div>
+      <div class="card"><div class="card-hd">Current workload</div><div id="ed-load"></div></div>
     </div>
 
     <!-- FINANCES -->
@@ -444,42 +366,30 @@ if (localStorage.getItem('lm_gh_token')) {
 
   </div>
 </div>
-</div>
+</div><!-- end .shell / #app-shell -->
 
-<!-- ADD CLIENT WIZARD -->
+<!-- MOBILE NAV -->
+<nav class="bot-nav" id="bot-nav">
+  <div class="bot-nav-inner">
+    <button class="bn on" data-p="overview" onclick="go('overview')"><span class="bn-ico">▦</span>Home</button>
+    <button class="bn" data-p="leads" onclick="go('leads')"><span class="bn-ico">◎</span>Leads</button>
+    <button class="bn" data-p="clients" onclick="go('clients')"><span class="bn-ico">⊕</span>Clients</button>
+    <button class="bn" data-p="schedule" onclick="go('schedule')"><span class="bn-ico">◫</span>Schedule</button>
+    <button class="bn" data-p="finances" onclick="go('finances')"><span class="bn-ico">◈</span>Finances</button>
+  </div>
+</nav>
+
+<!-- MODALS -->
 <div class="ovl" id="wiz-ovl">
 <div class="modal" style="max-width:440px">
   <button class="modal-x" onclick="closeWiz()">×</button>
-  <div class="ws on" id="ws1">
-    <div class="wq">Agent name?</div>
-    <div class="wh">Their real name — only you see this.</div>
-    <input class="fi" type="text" id="w-real" placeholder="e.g. Sherry FitzGerald Naas">
-    <div class="w-nav"><span class="w-prog">1 of 4</span><button class="btn pri" onclick="wNext(1)">Next →</button></div>
-  </div>
-  <div class="ws" id="ws2">
-    <div class="wq">Editor nickname?</div>
-    <div class="wh">What editors see instead of the real name.</div>
-    <input class="fi" type="text" id="w-nick" placeholder="e.g. Client A">
-    <div class="w-nav"><span class="w-prog">2 of 4</span><div style="display:flex;gap:6px"><button class="btn ghost" onclick="wBack(2)">←</button><button class="btn pri" onclick="wNext(2)">Next →</button></div></div>
-  </div>
-  <div class="ws" id="ws3">
-    <div class="wq">Tier?</div>
-    <div class="wh">What they're signed up for.</div>
-    <button class="tier-btn" onclick="pickTier(1)">Tier 1 — Content only<small>€75/shoot · edited videos, no posting</small></button>
-    <button class="tier-btn" onclick="pickTier(2)">Tier 2 — Content + organic<small>Video + managed posting until sold</small></button>
-    <button class="tier-btn" onclick="pickTier(3)">Tier 3 — Full funnel<small>Video + organic + paid Meta lead ads</small></button>
-    <div class="w-nav"><span class="w-prog">3 of 4</span><button class="btn ghost" onclick="wBack(3)">←</button></div>
-  </div>
-  <div class="ws" id="ws4">
-    <div class="wq">Monthly retainer?</div>
-    <div class="wh">Leave blank if the first shoot is free.</div>
-    <input class="fi" type="number" id="w-val" placeholder="€">
-    <div class="w-nav"><span class="w-prog">4 of 4</span><div style="display:flex;gap:6px"><button class="btn ghost" onclick="wBack(4)">←</button><button class="btn pri" onclick="wFinish()">Add client ✓</button></div></div>
-  </div>
+  <div class="ws on" id="ws1"><div class="wq">Agent name?</div><div class="wh">Their real name — only you see this.</div><input class="fi" type="text" id="w-real" placeholder="e.g. Sherry FitzGerald Naas"><div class="w-nav"><span class="w-prog">1 of 4</span><button class="btn pri" onclick="wNext(1)">Next →</button></div></div>
+  <div class="ws" id="ws2"><div class="wq">Editor nickname?</div><div class="wh">What editors see instead of the real name.</div><input class="fi" type="text" id="w-nick" placeholder="e.g. Client A"><div class="w-nav"><span class="w-prog">2 of 4</span><div style="display:flex;gap:6px"><button class="btn ghost" onclick="wBack(2)">←</button><button class="btn pri" onclick="wNext(2)">Next →</button></div></div></div>
+  <div class="ws" id="ws3"><div class="wq">Tier?</div><div class="wh">What they're signed up for.</div><button class="tier-btn" onclick="pickTier(1)">Tier 1 — Content only<small>€75/shoot · edited videos, no posting</small></button><button class="tier-btn" onclick="pickTier(2)">Tier 2 — Content + organic<small>Video + managed posting until sold</small></button><button class="tier-btn" onclick="pickTier(3)">Tier 3 — Full funnel<small>Video + organic + paid Meta lead ads</small></button><div class="w-nav"><span class="w-prog">3 of 4</span><button class="btn ghost" onclick="wBack(3)">←</button></div></div>
+  <div class="ws" id="ws4"><div class="wq">Monthly retainer?</div><div class="wh">Leave blank if the first shoot is free.</div><input class="fi" type="number" id="w-val" placeholder="€"><div class="w-nav"><span class="w-prog">4 of 4</span><div style="display:flex;gap:6px"><button class="btn ghost" onclick="wBack(4)">←</button><button class="btn pri" onclick="wFinish()">Add client ✓</button></div></div></div>
 </div>
 </div>
 
-<!-- CLIENT EDIT MODAL -->
 <div class="ovl" id="ce-ovl">
 <div class="modal" style="max-width:400px">
   <button class="modal-x" onclick="closeCE()">×</button>
@@ -487,65 +397,29 @@ if (localStorage.getItem('lm_gh_token')) {
   <div class="fg"><label>Agent name</label><input class="fi" type="text" id="ce-real"></div>
   <div class="fg"><label>Editor nickname</label><input class="fi" type="text" id="ce-nick"></div>
   <div class="fg2">
-    <div class="fg"><label>Tier</label>
-      <select class="fi" id="ce-tier">
-        <option value="1">Tier 1 — Content</option>
-        <option value="2">Tier 2 — + Organic</option>
-        <option value="3">Tier 3 — Full funnel</option>
-      </select>
-    </div>
+    <div class="fg"><label>Tier</label><select class="fi" id="ce-tier"><option value="1">Tier 1 — Content</option><option value="2">Tier 2 — + Organic</option><option value="3">Tier 3 — Full funnel</option></select></div>
     <div class="fg"><label>Monthly retainer (€)</label><input class="fi" type="number" id="ce-val"></div>
   </div>
   <div class="modal-ft"><button class="btn ghost" onclick="closeCE()">Cancel</button><button class="btn pri" onclick="saveCE()">Save</button></div>
 </div>
 </div>
 
-<!-- HOUSE MODAL -->
 <div class="ovl" id="hm-ovl">
-<div class="modal" style="max-width:400px">
+<div class="modal">
   <button class="modal-x" onclick="closeHM()">×</button>
   <div class="modal-ttl" id="hm-ttl">Add house</div>
-  <div class="fg"><label>Address</label><input class="fi" type="text" id="hm-addr" placeholder="e.g. 14 Oak Drive, Naas, Co. Kildare"></div>
-  <div class="fg"><label>📹 Shoot date</label><input class="fi" type="date" id="hm-shoot"></div>
+  <div class="fg"><label>Address</label><input class="fi" type="text" id="hm-addr" placeholder="e.g. 14 Oak Drive, Naas"></div>
+  <div class="fg3">
+    <div class="fg"><label>📹 Shoot date</label><input class="fi" type="date" id="hm-shoot"></div>
+    <div class="fg"><label>🎬 Editor deadline</label><input class="fi" type="date" id="hm-edue"></div>
+    <div class="fg"><label>🚀 Go live</label><input class="fi" type="date" id="hm-live"></div>
+  </div>
+  <div class="fg"><label>Editor assigned</label><select class="fi" id="hm-editor"></select></div>
+  <div class="fg"><label>Notes</label><input class="fi" type="text" id="hm-notes" placeholder="Access code, agent requests, shot list..."></div>
   <div class="modal-ft"><button class="btn ghost" onclick="closeHM()">Cancel</button><button class="btn pri" id="hm-save-btn" onclick="saveHM()">Add house</button></div>
 </div>
 </div>
 
-<!-- VIDEO MODAL -->
-<div class="ovl" id="vm-ovl">
-<div class="modal" style="max-width:520px">
-  <button class="modal-x" onclick="closeVM()">×</button>
-  <div class="modal-ttl" id="vm-ttl">Add video</div>
-  <div class="fg"><label>Video title</label><input class="fi" type="text" id="vm-name" placeholder="e.g. House tour, Agent walkthrough, Kitchen focus"></div>
-  <div class="fg2">
-    <div class="fg"><label>Editor assigned</label><select class="fi" id="vm-editor"></select></div>
-    <div class="fg"><label>🎬 Editor deadline</label><input class="fi" type="date" id="vm-edue" onchange="document.getElementById('vm-live').min=this.value"></div>
-  </div>
-  <div class="fg"><label>🚀 Go live date</label><input class="fi" type="date" id="vm-live"></div>
-  <div class="fg">
-    <label>Shot notes</label>
-    <textarea class="fi" id="vm-notes" rows="8" placeholder="Be as detailed as possible. Include:
-
-• Key shots to capture — which rooms, angles, features
-• Order of filming (e.g. start exterior, move to kitchen, end in garden)
-• Lighting notes — time of day, natural vs artificial, any issues
-• Agent on camera — what they should say, tone, duration
-• Music/vibe direction for the edit
-• Any access details — gate codes, contact on site
-• Specific things the agent wants highlighted
-• Things to avoid or be careful of
-• Hook idea for the paid ad version" style="resize:vertical;min-height:180px;line-height:1.6"></textarea>
-  </div>
-  <div class="modal-ft"><button class="btn ghost" onclick="closeVM()">Cancel</button><button class="btn pri" id="vm-save-btn" onclick="saveVM()">Add video</button></div>
-</div>
-</div>
-
-<!-- LIGHTBOX -->
-<div class="lb" id="lightbox" onclick="this.classList.remove('on')">
-  <img id="lb-img" src="" alt="">
-</div>
-
-<!-- FINANCE MODAL -->
 <div class="ovl" id="fin-ovl">
 <div class="modal" style="max-width:360px">
   <button class="modal-x" onclick="closeFinM()">×</button>
@@ -559,614 +433,191 @@ if (localStorage.getItem('lm_gh_token')) {
 
 <script>
 /* ── CONFIG ── */
-const GH_USER  = 'JustPatrickG';
-const GH_REPO  = 'dashboard-data';
-const GH_FILE  = 'db.json';
+const GH_USER = 'JustPatrickG';
+const GH_REPO = 'dashboard-data';
+const GH_FILE = 'db.json';
 const PASSWORD = '174thePark';
-const getToken = () => localStorage.getItem('lm_gh_token') || '';
+const TK = 'lm_gh_token';
+const SK = 'lm_v6';
 
 /* ── AUTH ── */
-function checkLogin() {
-  return sessionStorage.getItem('lm_auth') === '1';
+function getToken() { return localStorage.getItem(TK) || ''; }
+
+function showLogin() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('token-screen').style.display = 'none';
+  document.getElementById('app-shell').style.display = 'none';
+  document.getElementById('bot-nav').style.display = 'none';
+  setTimeout(() => document.getElementById('lp-input').focus(), 60);
 }
-function doLogin() {
-  const pw  = document.getElementById('login-pw').value;
-  const tok = document.getElementById('login-tok').value.trim();
-  const err = document.getElementById('login-err');
-  if (pw !== PASSWORD) {
-    err.textContent = 'Incorrect password.';
-    document.getElementById('login-pw').value = '';
-    document.getElementById('login-pw').focus();
-    return;
-  }
-  if (tok) localStorage.setItem('lm_gh_token', tok);
-  if (!getToken()) {
-    err.textContent = 'Please paste your GitHub token — only needed once.';
-    return;
-  }
-  sessionStorage.setItem('lm_auth', '1');
+
+function tryLogin() {
+  const pw = document.getElementById('lp-input').value;
+  if (pw !== PASSWORD) { document.getElementById('lp-err').textContent = 'Wrong password'; return; }
   document.getElementById('login-screen').style.display = 'none';
-  document.querySelector('.shell').style.display = 'flex';
+  if (!getToken()) {
+    document.getElementById('token-screen').style.display = 'flex';
+  } else {
+    startApp();
+  }
+}
+
+function saveToken() {
+  const t = document.getElementById('tk-input').value.trim();
+  if (!t) return;
+  localStorage.setItem(TK, t);
+  document.getElementById('token-screen').style.display = 'none';
+  startApp();
+}
+
+function startApp() {
+  document.getElementById('app-shell').style.display = 'flex';
   initApp();
 }
-document.getElementById('login-pw').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
-if (checkLogin()) {
-  document.getElementById('login-screen').style.display = 'none';
-  document.querySelector('.shell').style.display = 'flex';
-}
-
-/* ── GITHUB SYNC ── */
-let ghSha = null; // current SHA of db.json on GitHub
+/* ── DATA ── */
+let DB = { clients: [], editors: ['Unassigned'], leads: [] };
+let ghSha = null;
 let saveTimer = null;
 let pendingSave = false;
+
+function localSave() { try { localStorage.setItem(SK, JSON.stringify(DB)); } catch(e) {} }
 
 async function ghGet() {
   setSyncStatus('loading');
   try {
     const r = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FILE}`, {
-      headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+      headers: { Authorization: 'token ' + getToken(), Accept: 'application/vnd.github.v3+json' }
     });
-    if (r.status === 404) {
-      // File doesn't exist yet — start fresh
-      ghSha = null;
-      setSyncStatus('ok');
-      return { clients: [], editors: ['Unassigned'] };
-    }
+    if (r.status === 404) { ghSha = null; setSyncStatus('saved'); return; }
     if (!r.ok) throw new Error(r.status);
-    const json = await r.json();
-    ghSha = json.sha;
-    const data = JSON.parse(atob(json.content.replace(/\n/g,'')));
-    setSyncStatus('ok');
-    return data;
+    const j = await r.json();
+    ghSha = j.sha;
+    DB = JSON.parse(atob(j.content.replace(/\n/g, '')));
+    if (!DB.editors) DB.editors = ['Unassigned'];
+    if (!DB.leads) DB.leads = [];
+    localSave();
+    setSyncStatus('saved');
   } catch(e) {
+    try { const r = localStorage.getItem(SK); if (r) DB = JSON.parse(r); } catch(e2) {}
+    if (!DB.editors) DB.editors = ['Unassigned'];
+    if (!DB.leads) DB.leads = [];
     setSyncStatus('error');
-    console.error('GitHub load failed:', e);
-    // Fall back to localStorage
-    try { const r = localStorage.getItem('lm_v6'); if(r) return JSON.parse(r); } catch(_){}
-    return { clients: [], editors: ['Unassigned'] };
   }
 }
 
-async function ghPut(data) {
+async function ghPut() {
+  pendingSave = false;
   setSyncStatus('saving');
-  const body = JSON.stringify({
-    message: `update ${new Date().toISOString()}`,
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)))),
-    ...(ghSha ? { sha: ghSha } : {})
-  });
   try {
+    const body = { message: 'update ' + new Date().toISOString(), content: btoa(unescape(encodeURIComponent(JSON.stringify(DB)))) };
+    if (ghSha) body.sha = ghSha;
     const r = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FILE}`, {
       method: 'PUT',
-      headers: {
-        Authorization: `token ${getToken()}`,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body
+      headers: { Authorization: 'token ' + getToken(), 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
     });
     if (!r.ok) throw new Error(r.status);
-    const json = await r.json();
-    ghSha = json.content.sha;
-    // Mirror to localStorage as backup
-    try { localStorage.setItem('lm_v6', JSON.stringify(data)); } catch(_){}
-    setSyncStatus('ok');
-  } catch(e) {
-    setSyncStatus('error');
-    console.error('GitHub save failed:', e);
-    // Still save to localStorage so you don't lose data
-    try { localStorage.setItem('lm_v6', JSON.stringify(data)); } catch(_){}
-  }
+    const j = await r.json();
+    ghSha = j.content.sha;
+    setSyncStatus('saved');
+  } catch(e) { setSyncStatus('error'); }
 }
 
-function setSyncStatus(state) {
+function save() {
+  localSave();
+  pendingSave = true;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(ghPut, 1200);
+}
+
+function setSyncStatus(s) {
   const el = document.getElementById('sync-status');
   if (!el) return;
-  const map = {
-    loading: ['⟳ Loading…',  '#666'],
-    saving:  ['⟳ Saving…',   '#f59e0b'],
-    ok:      ['✓ Saved',     '#22c55e'],
-    error:   ['⚠ Save failed — check connection', '#ef4444']
-  };
-  const [txt, col] = map[state] || ['', '#666'];
-  el.textContent = txt;
-  el.style.color = col;
+  const map = { loading: ['⟳ Loading…','var(--sub)'], saving: ['⟳ Saving…','var(--sub)'], saved: ['✓ Saved','var(--sub)'], error: ['⚠ Save failed','var(--amb)'] };
+  el.textContent = map[s][0]; el.style.color = map[s][1];
 }
 
-// Debounced save — waits 1.2s after last change before writing to GitHub
-function save() {
-  pendingSave = true;
-  try { localStorage.setItem('lm_v6', JSON.stringify(DB)); } catch(_){} // instant local backup
-  clearTimeout(saveTimer);
-  setSyncStatus('saving');
-  saveTimer = setTimeout(async () => {
-    await ghPut(DB);
-    pendingSave = false;
-  }, 1200);
-}
-
-// Warn before closing if there's a pending save
-window.addEventListener('beforeunload', e => {
-  if (pendingSave) { e.preventDefault(); e.returnValue = ''; }
-});
-
-/* ── DATA ── */
-let DB = { clients: [], editors: ['Unassigned'] };
+window.addEventListener('beforeunload', e => { if (pendingSave) { e.preventDefault(); e.returnValue = ''; } });
 
 async function initApp() {
-  DB = await ghGet();
-  if (!DB.editors) DB.editors = ['Unassigned'];
+  await ghGet();
   go('overview');
 }
 
-if (checkLogin()) initApp();
-
-let curC = null, curH = null, finType = 'income', editingHouse = false;
-
+/* ── UTILS ── */
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,5);
-const today = () => new Date().toISOString().slice(0, 10);
-const thisMonth = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`; };
-const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const money = n => '€' + Math.abs(+n||0).toLocaleString('en-IE');
-const TL = { 1:'Tier 1', 2:'Tier 2', 3:'Tier 3' };
-
-function fmt(d) { if (!d) return '—'; return new Date(d+'T12:00:00').toLocaleDateString('en-IE',{day:'numeric',month:'short'}); }
-function fmtLong(d) { if (!d) return '—'; return new Date(d+'T12:00:00').toLocaleDateString('en-IE',{weekday:'short',day:'numeric',month:'short'}); }
-function du(d) { if (!d) return null; const n = new Date(); n.setHours(0,0,0,0); return Math.round((new Date(d+'T12:00:00') - n) / 86400000); }
-function dcls(d) { if (!d) return 'em'; const r = du(d); if (r < 0) return 'ov'; if (r <= 3) return 'so'; return 'ok'; }
-function rel(d) { if (!d) return ''; const r = du(d); if (r < 0) return `${Math.abs(r)}d ago`; if (r === 0) return 'Today'; if (r === 1) return 'Tomorrow'; return `in ${r} days`; }
-
-const C = () => DB.clients.find(x => x.id === curC);
-const H = () => { const c = C(); return c ? (c.houses||[]).find(x => x.id === curH) : null; };
-
-function dueBadge(d) {
-  if (!d) return '';
-  const r = du(d);
-  if (r < 0) return '<span class="pill red">overdue</span>';
-  if (r === 0) return '<span class="pill red">today</span>';
-  if (r <= 3) return `<span class="pill amb">${r}d</span>`;
-  return `<span style="font-size:12px;color:var(--sub)">${fmt(d)}</span>`;
-}
-
-function allHouses(activeOnly) {
-  const out = [];
-  DB.clients.forEach(c => (c.houses||[]).forEach(h => { if (activeOnly && h.sold) return; out.push({h,c}); }));
-  return out;
-}
-function allEvents() {
-  const evs = [];
-  allHouses(true).forEach(({h,c}) => {
-    if (h.shoot) evs.push({date:h.shoot, type:'Shoot', icon:'📹', h, c});
-    (h.videos||[]).filter(v=>!v.done).forEach(v => {
-      if (v.editorDue) evs.push({date:v.editorDue, type:`Editor deadline — ${v.name}`, icon:'🎬', h, c});
-      if (v.live) evs.push({date:v.live, type:`Go live — ${v.name}`, icon:'🚀', h, c});
-    });
-  });
-  return evs.sort((a,b) => new Date(a.date) - new Date(b.date));
-}
-function netOf(c) { return (c.finances||[]).reduce((a,f) => f.type==='income' ? a+(+f.amount) : a-(+f.amount), 0); }
+const today = () => new Date().toISOString().slice(0,10);
+const thisMonth = () => { const n=new Date(); return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`; };
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const money = n => '€'+Math.abs(+n||0).toLocaleString('en-IE');
+const TL = {1:'Tier 1',2:'Tier 2',3:'Tier 3'};
+function fmt(d){if(!d)return'—';return new Date(d+'T12:00:00').toLocaleDateString('en-IE',{day:'numeric',month:'short'});}
+function fmtLong(d){if(!d)return'—';return new Date(d+'T12:00:00').toLocaleDateString('en-IE',{weekday:'short',day:'numeric',month:'short'});}
+function du(d){if(!d)return null;const n=new Date();n.setHours(0,0,0,0);return Math.round((new Date(d+'T12:00:00')-n)/86400000);}
+function dcls(d){if(!d)return'em';const r=du(d);if(r<0)return'ov';if(r<=3)return'so';return'ok';}
+function rel(d){if(!d)return'';const r=du(d);if(r<0)return`${Math.abs(r)}d ago`;if(r===0)return'Today';if(r===1)return'Tomorrow';return`in ${r} days`;}
+const C=()=>DB.clients.find(x=>x.id===curC);
+const H=()=>{const c=C();return c?(c.houses||[]).find(x=>x.id===curH):null;};
+function dueBadge(d){if(!d)return'';const r=du(d);if(r<0)return'<span class="pill red">overdue</span>';if(r===0)return'<span class="pill red">today</span>';if(r<=3)return`<span class="pill amb">${r}d</span>`;return`<span style="font-size:12px;color:var(--sub)">${fmt(d)}</span>`;}
+function allHouses(activeOnly){const out=[];DB.clients.forEach(c=>(c.houses||[]).forEach(h=>{if(activeOnly&&h.sold)return;out.push({h,c});}));return out;}
+function allEvents(){const evs=[];allHouses(true).forEach(({h,c})=>{if(h.shoot)evs.push({date:h.shoot,type:'Shoot',icon:'📹',h,c});if(h.editorDue)evs.push({date:h.editorDue,type:'Editor deadline',icon:'🎬',h,c});if(h.live)evs.push({date:h.live,type:'Go live',icon:'🚀',h,c});});return evs.sort((a,b)=>new Date(a.date)-new Date(b.date));}
+function netOf(c){return(c.finances||[]).reduce((a,f)=>f.type==='income'?a+(+f.amount):a-(+f.amount),0);}
+let curC=null,curH=null,finType='income',editingHouse=false;
 
 /* ── ROUTING ── */
-function go(page, a, b) {
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.sn').forEach(s => s.classList.remove('on'));
-  document.querySelectorAll('.bn').forEach(s => s.classList.remove('on'));
+const navMap={overview:'overview',leads:'leads',clients:'clients',client:'clients',house:'clients',schedule:'schedule',editors:'editors',finances:'finances'};
+function go(page,a,b){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.sn,.bn').forEach(s=>s.classList.remove('on'));
   document.getElementById('pg-'+page).classList.add('on');
-  const navPage = {client:'clients',house:'clients',overview:'overview',leads:'leads'}[page]||page;
-  const sn = document.querySelector(`.sn[data-p="${navPage}"]`);
-  if (sn) sn.classList.add('on');
-  const bn = document.querySelector(`.bn[data-p="${navPage}"]`);
-  if (bn) bn.classList.add('on');
-
-  const ttl = document.getElementById('tb-ttl');
-  const bdg = document.getElementById('tb-badge');
-  const tbr = document.getElementById('tb-r');
-  const crumb = document.getElementById('crumb');
-  bdg.style.display = 'none'; tbr.innerHTML = ''; crumb.style.display = 'none'; crumb.innerHTML = '';
-  document.querySelector('.content').scrollTop = 0;
-
-  if (page === 'overview') {
-    ttl.textContent = 'Dashboard';
-    renderOverview();
-  } else if (page === 'clients') {
-    ttl.textContent = 'Clients';
-    tbr.innerHTML = '<button class="btn sm pri" onclick="openWiz()">+ Add client</button>';
-    renderClients();
-  } else if (page === 'client') {
-    curC = a;
-    const c = C(); if (!c) return go('clients');
-    ttl.textContent = c.real;
-    bdg.textContent = TL[c.tier]; bdg.style.display = '';
-    crumb.style.display = '';
-    crumb.innerHTML = `<button onclick="go('clients')">Clients</button> ›`;
-    tbr.innerHTML = '<button class="btn sm pri" onclick="openHouseModal()">+ Add house</button>';
-    renderClient();
-  } else if (page === 'house') {
-    curC = a; curH = b;
-    const c = C(), h = H(); if (!c||!h) return go('clients');
-    ttl.textContent = h.addr;
-    crumb.style.display = '';
-    crumb.innerHTML = `<button onclick="go('clients')">Clients</button> › <button onclick="go('client','${c.id}')">${esc(c.real)}</button> ›`;
-    renderHouse();
-  } else if (page === 'schedule') {
-    ttl.textContent = 'Schedule';
-    renderSchedule();
-  } else if (page === 'editors') {
-    ttl.textContent = 'Editors';
-    renderEditors();
-  } else if (page === 'finances') {
-    ttl.textContent = 'Finances';
-    renderFinances();
-  }
+  const key=navMap[page]||page;
+  document.querySelectorAll(`.sn[data-p="${key}"],.bn[data-p="${key}"]`).forEach(el=>el.classList.add('on'));
+  const ttl=document.getElementById('tb-ttl'),bdg=document.getElementById('tb-badge'),tbr=document.getElementById('tb-r'),crumb=document.getElementById('crumb');
+  bdg.style.display='none';tbr.innerHTML='';crumb.style.display='none';crumb.innerHTML='';
+  document.querySelector('.content').scrollTop=0;
+  if(page==='overview'){ttl.textContent='Dashboard';renderOverview();}
+  else if(page==='leads'){ttl.textContent='Leads';renderLeads();}
+  else if(page==='clients'){ttl.textContent='Clients';tbr.innerHTML='<button class="btn sm pri" onclick="openWiz()">+ Add client</button>';renderClients();}
+  else if(page==='client'){curC=a;const c=C();if(!c)return go('clients');ttl.textContent=c.real;bdg.textContent=TL[c.tier];bdg.style.display='';crumb.style.display='';crumb.innerHTML=`<button onclick="go('clients')">Clients</button> ›`;tbr.innerHTML='<button class="btn sm pri" onclick="openHouseModal()">+ Add house</button>';renderClient();}
+  else if(page==='house'){curC=a;curH=b;const c=C(),h=H();if(!c||!h)return go('clients');ttl.textContent=h.addr;crumb.style.display='';crumb.innerHTML=`<button onclick="go('clients')">Clients</button> › <button onclick="go('client','${c.id}')">${esc(c.real)}</button> ›`;renderHouse();}
+  else if(page==='schedule'){ttl.textContent='Schedule';renderSchedule();}
+  else if(page==='editors'){ttl.textContent='Editors';renderEditors();}
+  else if(page==='finances'){ttl.textContent='Finances';renderFinances();}
 }
 
 /* ── OVERVIEW ── */
-function renderOverview() {
-  document.getElementById('kv-c').textContent = DB.clients.length;
-  const waitingLeads = (DB.leads||[]).filter(l=>l.status==='waiting').length;
-  document.getElementById('kv-l').textContent = waitingLeads;
-  document.getElementById('kv-h').textContent = allHouses(true).length;
-  const m = thisMonth();
-  document.getElementById('kv-s').textContent = allHouses(false).filter(({h}) => h.shoot && h.shoot.startsWith(m)).length;
-  const net = DB.clients.reduce((a,c) => a+netOf(c), 0);
-  const kn = document.getElementById('kv-n');
-  kn.textContent = money(net); kn.style.color = net < 0 ? 'var(--red)' : '';
-
-  const up = allEvents().filter(e => du(e.date) >= 0).slice(0, 7);
-  document.getElementById('ov-up').innerHTML = up.length ? up.map(e => `
-    <div class="task" style="cursor:pointer" onclick="go('house','${e.c.id}','${e.h.id}')">
-      <div class="task-tx"><b>${e.icon} ${e.type}</b><br><span style="color:var(--sub);font-size:12px">${esc(e.h.addr)} · ${esc(e.c.real)}</span></div>
-      ${dueBadge(e.date)}
-    </div>`).join('') : '<div class="empty">Nothing upcoming</div>';
-
-  const tasks = [];
-  DB.clients.forEach(c => {
-    (c.tasks||[]).filter(t=>!t.done).forEach(t => tasks.push({t,c,h:null}));
-    (c.houses||[]).filter(h=>!h.sold).forEach(h => (h.tasks||[]).filter(t=>!t.done).forEach(t => tasks.push({t,c,h})));
-  });
-  tasks.sort((a,b) => new Date(a.t.due||'9999') - new Date(b.t.due||'9999'));
-  document.getElementById('ov-tk').innerHTML = tasks.length ? tasks.slice(0,7).map(({t,c,h}) => `
-    <div class="task" style="cursor:pointer" onclick="${h ? `go('house','${c.id}','${h.id}')` : `go('client','${c.id}')`}">
-      <div class="task-tx">${esc(t.text)}<br><span style="color:var(--sub);font-size:12px">${h?esc(h.addr)+' · ':''}${esc(c.real)}</span></div>
-      ${dueBadge(t.due)}
-    </div>`).join('') : '<div class="empty">All clear</div>';
+function renderOverview(){
+  const wl=(DB.leads||[]).filter(l=>l.status==='waiting').length;
+  document.getElementById('kv-l').textContent=wl;
+  document.getElementById('kv-c').textContent=DB.clients.length;
+  document.getElementById('kv-h').textContent=allHouses(true).length;
+  const m=thisMonth();
+  document.getElementById('kv-s').textContent=allHouses(false).filter(({h})=>h.shoot&&h.shoot.startsWith(m)).length;
+  const net=DB.clients.reduce((a,c)=>a+netOf(c),0);
+  const kn=document.getElementById('kv-n');kn.textContent=money(net);kn.style.color=net<0?'var(--red)':'';
+  const up=allEvents().filter(e=>du(e.date)>=0).slice(0,7);
+  document.getElementById('ov-up').innerHTML=up.length?up.map(e=>`<div class="task" style="cursor:pointer" onclick="go('house','${e.c.id}','${e.h.id}')"><div class="task-tx"><b>${e.icon} ${e.type}</b><br><span style="color:var(--sub);font-size:12px">${esc(e.h.addr)} · ${esc(e.c.real)}</span></div>${dueBadge(e.date)}</div>`).join(''):'<div class="empty">Nothing upcoming</div>';
+  const tasks=[];
+  DB.clients.forEach(c=>{(c.tasks||[]).filter(t=>!t.done).forEach(t=>tasks.push({t,c,h:null}));(c.houses||[]).filter(h=>!h.sold).forEach(h=>(h.tasks||[]).filter(t=>!t.done).forEach(t=>tasks.push({t,c,h})));});
+  tasks.sort((a,b)=>new Date(a.t.due||'9999')-new Date(b.t.due||'9999'));
+  document.getElementById('ov-tk').innerHTML=tasks.length?tasks.slice(0,7).map(({t,c,h})=>`<div class="task" style="cursor:pointer" onclick="${h?`go('house','${c.id}','${h.id}')`:`go('client','${c.id}')`}"><div class="task-tx">${esc(t.text)}<br><span style="color:var(--sub);font-size:12px">${h?esc(h.addr)+' · ':''}${esc(c.real)}</span></div>${dueBadge(t.due)}</div>`).join(''):'<div class="empty">All clear</div>';
 }
 
-/* ── CLIENTS LIST ── */
-function renderClients() {
-  const el = document.getElementById('cl-body');
-  if (!DB.clients.length) { el.innerHTML = '<div class="empty" style="padding:64px">No clients yet</div>'; return; }
-  el.innerHTML = `<div class="card"><table class="tbl"><thead><tr>
-    <th>Client</th><th>Tier</th><th>Live houses</th><th>Next shoot</th><th>Net</th><th></th>
-  </tr></thead><tbody>` + DB.clients.map(c => {
-    const live = (c.houses||[]).filter(h=>!h.sold).length;
-    const next = (c.houses||[]).filter(h=>!h.sold&&h.shoot).map(h=>h.shoot).sort().find(d=>du(d)>=0);
-    const net = netOf(c);
-    return `<tr class="row" onclick="go('client','${c.id}')">
-      <td><div style="font-weight:600">${esc(c.real)}</div><div style="font-size:11.5px;color:var(--sub)">${esc(c.nick)}</div></td>
-      <td><span class="pill dim">${TL[c.tier]||'—'}</span></td>
-      <td style="color:var(--sub)">${live||'—'}</td>
-      <td style="font-size:13px;color:${next&&du(next)<=3?'var(--amb)':'var(--sub)'}">${next?fmt(next):'—'}</td>
-      <td style="color:${net>=0?'var(--grn)':'var(--red)'};font-weight:600">${money(net)}</td>
-      <td style="color:var(--sub)">›</td>
-    </tr>`;
-  }).join('') + '</tbody></table></div>';
-}
-
-/* ── CLIENT DETAIL ── */
-function renderClient() {
-  const c = C(); if (!c) return;
-  document.getElementById('c-name').textContent = c.real;
-  document.getElementById('c-sub').textContent = `${TL[c.tier]} · Editors see "${c.nick}"${+c.value?' · '+money(c.value)+'/mo':''}`;
-  document.getElementById('c-notes').value = c.notes || '';
-  renderCHouses(); renderCTasks(); renderCFin();
-}
-
-function renderCHouses() {
-  const c = C(); if (!c) return;
-  const el = document.getElementById('c-houses');
-  const houses = (c.houses||[]).slice().sort((a,b) => (a.sold?1:0)-(b.sold?1:0)||(new Date(a.shoot||'9999')-new Date(b.shoot||'9999')));
-  if (!houses.length) { el.innerHTML = '<div class="empty" style="padding:12px 0">No houses yet</div>'; return; }
-  el.innerHTML = houses.map(h => {
-    const vids = h.videos||[];
-    const delivered = vids.filter(v=>v.done).length;
-    const nextDue = vids.filter(v=>!v.done&&v.editorDue).map(v=>v.editorDue).sort()[0];
-    const nextLive = vids.filter(v=>!v.done&&v.live).map(v=>v.live).sort()[0];
-    return `<div class="house-row" onclick="go('house','${c.id}','${h.id}')" style="${h.sold?'opacity:.45':''}">
-      <div class="house-addr">${esc(h.addr)}</div>
-      <div class="house-dates">
-        <div class="hd-item"><span class="hd-label">Shoot</span><span class="hd-val ${dcls(h.shoot)}">${h.shoot?fmt(h.shoot):'—'}</span></div>
-        <div class="hd-item"><span class="hd-label">Editor due</span><span class="hd-val ${dcls(nextDue)}">${nextDue?fmt(nextDue):'—'}</span></div>
-        <div class="hd-item"><span class="hd-label">Go live</span><span class="hd-val ${dcls(nextLive)}">${nextLive?fmt(nextLive):'—'}</span></div>
-        <div class="hd-item"><span class="hd-label">Videos</span><span class="hd-val ok">${delivered}/${vids.length}</span></div>
-      </div>
-      <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
-        <span class="pill ${h.sold?'dim':'grn'}">${h.sold?'Sold':'Live'}</span>
-        <span style="color:var(--sub)">›</span>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function renderCTasks() {
-  const c = C(); if (!c) return;
-  const ts = c.tasks || [];
-  document.getElementById('c-tasks').innerHTML = ts.length ? ts.map(t => `
-    <div class="task">
-      <div class="chk ${t.done?'done':''}" onclick="toggleCT('${t.id}')"></div>
-      <div class="task-tx ${t.done?'done':''}">${esc(t.text)}</div>
-      ${!t.done ? dueBadge(t.due) : ''}
-      <button class="btn xs ghost" style="color:var(--sub)" onclick="delCT('${t.id}')">✕</button>
-    </div>`).join('') : '<div style="color:var(--sub);font-size:13px;padding:4px 0">No tasks</div>';
-}
-function addCTask() {
-  const c = C(); if (!c) return;
-  const v = document.getElementById('ctxt').value.trim(); if (!v) return;
-  (c.tasks = c.tasks||[]).push({id:uid(), text:v, due:document.getElementById('cdue').value, done:false});
-  save(); document.getElementById('ctxt').value = ''; document.getElementById('cdue').value = ''; renderCTasks();
-}
-function toggleCT(id) { const c=C(); const t=(c.tasks||[]).find(x=>x.id===id); if(t) t.done=!t.done; save(); renderCTasks(); }
-function delCT(id) { const c=C(); c.tasks=(c.tasks||[]).filter(x=>x.id!==id); save(); renderCTasks(); }
-
-function renderCFin() {
-  const c = C(); if (!c) return;
-  const fins = (c.finances||[]).slice().reverse();
-  document.getElementById('c-fin').innerHTML = fins.length ? fins.map(f => `
-    <div class="fin-row">
-      <span style="min-width:0;overflow:hidden;text-overflow:ellipsis">${esc(f.desc)}<span style="color:var(--sub);font-size:11.5px"> · ${fmt(f.date)}</span></span>
-      <span style="display:flex;gap:6px;align-items:center">
-        <span class="${f.type==='income'?'fin-pos':'fin-neg'}">${f.type==='income'?'+':'−'}${money(f.amount)}</span>
-        <button class="btn xs ghost" style="color:var(--sub)" onclick="delFin('${f.id}')">✕</button>
-      </span>
-    </div>`).join('') : '<div style="color:var(--sub);font-size:13px;padding:4px 0">No entries</div>';
-  const net = netOf(c);
-  const ne = document.getElementById('c-net');
-  ne.textContent = money(net); ne.style.color = net >= 0 ? 'var(--grn)' : 'var(--red)';
-}
-function delFin(id) { const c=C(); c.finances=(c.finances||[]).filter(x=>x.id!==id); save(); renderCFin(); }
-function saveCNotes() { const c=C(); if(!c) return; c.notes=document.getElementById('c-notes').value; save(); }
-
-/* ── HOUSE DETAIL ── */
-function renderHouse() {
-  const c=C(), h=H(); if(!c||!h) return;
-  document.getElementById('h-addr').textContent = h.addr;
-  document.getElementById('h-sub').textContent = `${esc(c.real)} · ${TL[c.tier]} · Editors see "${esc(c.nick)}"`;
-  document.getElementById('h-sold-btn').textContent = h.sold ? 'Mark live' : 'Mark sold';
-  const sv = document.getElementById('h-shoot');
-  sv.textContent = h.shoot ? fmtLong(h.shoot) : 'Not set';
-  sv.className = 'ds-v ' + dcls(h.shoot);
-  document.getElementById('h-shoot-r').textContent = rel(h.shoot);
-  renderHVids(); renderHTasks();
-}
-function toggleSold() { const h=H(); if(!h) return; h.sold=!h.sold; save(); renderHouse(); }
-function delHouse() {
-  const c=C(),h=H(); if(!c||!h) return;
-  if(!confirm('Delete "'+h.addr+'" and all its data?')) return;
-  c.houses=(c.houses||[]).filter(x=>x.id!==h.id); save(); go('client',c.id);
-}
-
-/* ── VIDEO CARDS ── */
-let editingVid = null;
-
-function renderHVids() {
-  const h=H(); if(!h) return;
-  const vs=h.videos||[];
-  const el=document.getElementById('h-vids');
-  if(!vs.length){el.innerHTML='<div class="empty" style="padding:16px 0">No videos yet — add one to log shot notes, editor, and delivery dates</div>';return}
-  el.innerHTML = vs.map(v => {
-    return `<div class="vid-card" style="${v.done?'opacity:.55':''}">
-      <div class="vid-card-top">
-        <div class="vid-card-title">
-          <div class="chk ${v.done?'done':''}" onclick="toggleVid('${v.id}')"></div>
-          <span style="${v.done?'text-decoration:line-through;color:var(--sub)':''}">${esc(v.name)}</span>
-          <span class="pill ${v.done?'grn':'dim'}">${v.done?'Delivered':'In edit'}</span>
-        </div>
-        <div style="display:flex;gap:6px;flex-shrink:0">
-          <button class="btn xs ghost" onclick="openVM('${v.id}')">Edit</button>
-          <button class="btn xs ghost" style="color:var(--sub)" onclick="delVid('${v.id}')">✕</button>
-        </div>
-      </div>
-      <div class="vid-card-meta">
-        <div class="vid-meta-item">
-          <span class="vid-meta-label">✎ Editor</span>
-          <span class="vid-meta-val">${esc(v.editor||'Unassigned')}</span>
-        </div>
-        <div class="vid-meta-item">
-          <span class="vid-meta-label">🎬 Editor deadline</span>
-          <span class="vid-meta-val ${dcls(v.editorDue)}">${v.editorDue?fmt(v.editorDue):'Not set'}</span>
-        </div>
-        <div class="vid-meta-item">
-          <span class="vid-meta-label">🚀 Go live</span>
-          <span class="vid-meta-val ${dcls(v.live)}">${v.live?fmt(v.live):'Not set'}</span>
-        </div>
-      </div>
-      <button class="vid-notes-toggle" onclick="toggleNotes('${v.id}')">
-        <span id="vn-arr-${v.id}">▶</span> Shot notes & references
-      </button>
-      <div class="vid-notes-body" id="vn-${v.id}">
-        ${v.notes ? `<div class="vid-notes-text" style="margin-bottom:12px">${esc(v.notes)}</div>` : `<div style="font-size:12.5px;color:var(--sub);margin-bottom:12px">No shot notes yet — <button class="btn xs ghost" style="padding:2px 6px" onclick="openVM('${v.id}')">add notes</button></div>`}
-
-        <!-- STORYBOARDS -->
-        <div class="media-section">
-          <div class="media-hd">
-            🎨 Storyboards
-            <label class="btn xs ghost" style="cursor:pointer">
-              + Upload
-              <input type="file" accept="image/*" multiple style="display:none" onchange="addStoryboards('${v.id}',this)">
-            </label>
-          </div>
-          <div class="sb-grid" id="sb-${v.id}">
-            ${(v.storyboards||[]).map((img,i) => `
-              <div class="sb-img">
-                <img src="${img}" onclick="openLB('${img}')" title="Click to enlarge">
-                <button class="sb-img-del" onclick="delStoryboard('${v.id}',${i})">✕</button>
-              </div>`).join('')}
-            <label class="sb-add" title="Upload image">
-              + image
-              <input type="file" accept="image/*" multiple style="display:none" onchange="addStoryboards('${v.id}',this)">
-            </label>
-          </div>
-        </div>
-
-        <!-- EXAMPLES -->
-        <div class="media-section">
-          <div class="media-hd">🔗 Examples & references</div>
-          <div id="ex-${v.id}">
-            ${(v.examples||[]).map((e,i) => `
-              <div class="ex-link">
-                <span class="ex-link-label" title="${esc(e.label)}">${esc(e.label||'Link')}</span>
-                <a href="${esc(e.url)}" target="_blank" rel="noopener" title="${esc(e.url)}">${esc(e.url)}</a>
-                <button class="btn xs ghost" style="color:var(--sub)" onclick="delExample('${v.id}',${i})">✕</button>
-              </div>`).join('')}
-          </div>
-          <div class="add-link-row">
-            <input class="fi" type="text" id="ex-label-${v.id}" placeholder="Label (e.g. Inspo reel)" style="width:140px;flex:none">
-            <input class="fi" type="url" id="ex-url-${v.id}" placeholder="https://..." onkeydown="if(event.key==='Enter')addExample('${v.id}')">
-            <button class="btn xs pri" onclick="addExample('${v.id}')">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function toggleNotes(id) {
-  const body = document.getElementById('vn-'+id);
-  const arr = document.getElementById('vn-arr-'+id);
-  if(!body) return;
-  const open = body.classList.toggle('open');
-  if(arr) arr.textContent = open ? '▼' : '▶';
-}
-
-function openLB(src) {
-  document.getElementById('lb-img').src = src;
-  document.getElementById('lightbox').classList.add('on');
-}
-
-function addStoryboards(vid, input) {
-  const h=H(); if(!h) return;
-  const v=(h.videos||[]).find(x=>x.id===vid); if(!v) return;
-  if(!v.storyboards) v.storyboards=[];
-  const files = Array.from(input.files);
-  let loaded = 0;
-  files.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      v.storyboards.push(e.target.result);
-      loaded++;
-      if(loaded===files.length){save();renderHVids();}
-    };
-    reader.readAsDataURL(file);
-  });
-  input.value='';
-}
-
-function delStoryboard(vid, idx) {
-  const h=H(); if(!h) return;
-  const v=(h.videos||[]).find(x=>x.id===vid); if(!v) return;
-  v.storyboards.splice(idx,1); save(); renderHVids();
-}
-
-function addExample(vid) {
-  const h=H(); if(!h) return;
-  const v=(h.videos||[]).find(x=>x.id===vid); if(!v) return;
-  const url = document.getElementById('ex-url-'+vid)?.value.trim(); if(!url) return;
-  const label = document.getElementById('ex-label-'+vid)?.value.trim() || url;
-  if(!v.examples) v.examples=[];
-  v.examples.push({url, label});
-  save(); renderHVids();
-}
-
-function delExample(vid, idx) {
-  const h=H(); if(!h) return;
-  const v=(h.videos||[]).find(x=>x.id===vid); if(!v) return;
-  v.examples.splice(idx,1); save(); renderHVids();
-}
-
-function openVM(vidId) {
-  const h=H(); if(!h) return;
-  editingVid = vidId || null;
-  const v = vidId ? (h.videos||[]).find(x=>x.id===vidId) : null;
-  document.getElementById('vm-ttl').textContent = v ? 'Edit video' : 'Add video';
-  document.getElementById('vm-save-btn').textContent = v ? 'Save changes' : 'Add video';
-  document.getElementById('vm-name').value = v?.name || '';
-  document.getElementById('vm-edue').value = v?.editorDue || '';
-  document.getElementById('vm-live').value = v?.live || '';
-  document.getElementById('vm-notes').value = v?.notes || '';
-  const shoot = H()?.shoot || '';
-  document.getElementById('vm-edue').min = shoot;
-  document.getElementById('vm-live').min = v?.editorDue || shoot;
-  document.getElementById('vm-editor').innerHTML = DB.editors.map(e => `<option value="${esc(e)}" ${v?.editor===e?'selected':''}>${esc(e)}</option>`).join('');
-  document.getElementById('vm-ovl').classList.add('on');
-  setTimeout(() => document.getElementById('vm-name').focus(), 60);
-}
-function closeVM() { document.getElementById('vm-ovl').classList.remove('on'); editingVid=null; }
-function saveVM() {
-  const h=H(); if(!h) return;
-  const name = document.getElementById('vm-name').value.trim(); if(!name) return;
-  const data = {
-    name,
-    editor: document.getElementById('vm-editor').value,
-    editorDue: document.getElementById('vm-edue').value,
-    live: document.getElementById('vm-live').value,
-    notes: document.getElementById('vm-notes').value.trim()
-  };
-  if(editingVid) {
-    const v=(h.videos||[]).find(x=>x.id===editingVid);
-    if(v) Object.assign(v, data);
-  } else {
-    (h.videos=h.videos||[]).push({id:uid(), ...data, done:false, storyboards:[], examples:[]});
-  }
-  save(); closeVM(); renderHVids();
-}
-function toggleVid(id) { const h=H(); const v=(h.videos||[]).find(x=>x.id===id); if(v) v.done=!v.done; save(); renderHVids(); }
-function delVid(id) { const h=H(); h.videos=(h.videos||[]).filter(x=>x.id!==id); save(); renderHVids(); }
-
-function renderHTasks() {
-  const h=H(); if(!h) return;
-  const ts=h.tasks||[];
-  document.getElementById('h-tasks').innerHTML = ts.length ? ts.map(t => `
-    <div class="task">
-      <div class="chk ${t.done?'done':''}" onclick="toggleHT('${t.id}')"></div>
-      <div class="task-tx ${t.done?'done':''}">${esc(t.text)}</div>
-      ${!t.done ? dueBadge(t.due) : ''}
-      <button class="btn xs ghost" style="color:var(--sub)" onclick="delHT('${t.id}')">✕</button>
-    </div>`).join('') : '<div style="color:var(--sub);font-size:13px;padding:4px 0">No tasks</div>';
-}
-function addHTask() {
-  const h=H(); if(!h) return;
-  const v=document.getElementById('htxt').value.trim(); if(!v) return;
-  (h.tasks=h.tasks||[]).push({id:uid(),text:v,due:document.getElementById('hdue').value,done:false});
-  save(); document.getElementById('htxt').value=''; document.getElementById('hdue').value=''; renderHTasks();
-}
-function toggleHT(id) { const h=H(); const t=(h.tasks||[]).find(x=>x.id===id); if(t) t.done=!t.done; save(); renderHTasks(); }
-function delHT(id) { const h=H(); h.tasks=(h.tasks||[]).filter(x=>x.id!==id); save(); renderHTasks(); }
-
-
-/* ── LEADS ──────────────────────────────────────────────────── */
-function renderLeads() {
-  const leads = (DB.leads || []).slice().sort((a,b) => new Date(b.ts) - new Date(a.ts));
-  const cnt = document.getElementById('leads-count');
-  const waiting = leads.filter(l => l.status === 'waiting').length;
-  cnt.textContent = waiting ? waiting + ' waiting' : leads.length + ' total';
-  cnt.style.display = '';
-
-  const el = document.getElementById('leads-body');
-  if (!leads.length) { el.innerHTML = '<div class="empty">No leads yet — they'll appear here when someone fills in the contact form</div>'; return; }
-
-  const STATUS = { waiting: ['amb', 'Waiting for reply'], contacted: ['grn', 'Contacted'], lost: ['dim', 'Lost'] };
-
-  el.innerHTML = leads.map(l => {
-    const [cls, label] = STATUS[l.status] || STATUS.waiting;
-    const organic = l.organic ? 'Posts organically' : null;
-    const paid = l.paid ? 'Runs paid ads' : null;
-    const neither = l.neither ? 'No current marketing' : null;
-    const marketing = [organic, paid, neither, l.other ? 'Other: ' + l.other : null].filter(Boolean).join(' · ') || '—';
-    return `<div class="card" style="margin-bottom:8px">
+/* ── LEADS ── */
+function renderLeads(){
+  const leads=(DB.leads||[]).slice().sort((a,b)=>new Date(b.ts)-new Date(a.ts));
+  const el=document.getElementById('leads-body');
+  if(!leads.length){el.innerHTML='<div class="card"><div class="empty">No leads yet — they appear here when someone fills in the contact form</div></div>';return;}
+  const SC={waiting:['amb','Waiting'],contacted:['grn','Contacted'],lost:['dim','Lost']};
+  el.innerHTML=leads.map(l=>{
+    const [cls,label]=SC[l.status]||SC.waiting;
+    const mkt=[l.organic?'Posts organically':null,l.paid?'Runs paid ads':null,l.neither?'No marketing':null,l.other?'Other: '+l.other:null].filter(Boolean).join(' · ')||'—';
+    return`<div class="card" style="margin-bottom:8px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
         <div>
           <div style="font-size:15px;font-weight:600">${esc(l.name||'Unknown')}</div>
-          <div style="font-size:12.5px;color:var(--sub);margin-top:2px">${esc(l.phone||'No phone')} · ${esc(l.business||'No agency')}</div>
+          <div style="font-size:12.5px;color:var(--sub);margin-top:2px">${esc(l.phone||'—')} · ${esc(l.business||'No agency')}</div>
         </div>
         <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
           <span class="pill ${cls}">${label}</span>
@@ -1179,250 +630,140 @@ function renderLeads() {
         </div>
       </div>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr);font-size:12.5px;color:var(--sub)">
-        <span><b style="color:var(--tx)">Listings now:</b> ${esc(l.active||'—')}</span>
+        <span><b style="color:var(--tx)">Active now:</b> ${esc(l.active||'—')}</span>
         <span><b style="color:var(--tx)">Per month:</b> ${esc(l.monthly||'—')}</span>
-        <span><b style="color:var(--tx)">Marketing:</b> ${esc(marketing)}</span>
-        <span style="margin-left:auto;font-size:11.5px;color:var(--dim)">${l.ts ? new Date(l.ts).toLocaleDateString('en-IE',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : ''} · ${l.complete?'complete':'partial step '+l.step}</span>
+        <span><b style="color:var(--tx)">Marketing:</b> ${esc(mkt)}</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--dim)">${l.ts?new Date(l.ts).toLocaleDateString('en-IE',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):''} · ${l.complete?'complete':'step '+l.step+'/4'}</span>
       </div>
     </div>`;
   }).join('');
 }
+function setLeadStatus(id,status){const l=(DB.leads||[]).find(x=>x.id===id);if(l){l.status=status;save();renderLeads();}}
+function deleteLead(id){if(!confirm('Delete this lead?'))return;DB.leads=(DB.leads||[]).filter(x=>x.id!==id);save();renderLeads();}
 
-function setLeadStatus(id, status) {
-  const l = (DB.leads||[]).find(x=>x.id===id);
-  if (l) { l.status = status; save(); renderLeads(); }
+/* ── CLIENTS ── */
+function renderClients(){
+  const el=document.getElementById('cl-body');
+  if(!DB.clients.length){el.innerHTML='<div class="empty" style="padding:64px">No clients yet</div>';return;}
+  el.innerHTML=`<div class="card"><table class="tbl"><thead><tr><th>Client</th><th>Tier</th><th>Live houses</th><th>Next shoot</th><th>Net</th><th></th></tr></thead><tbody>`+DB.clients.map(c=>{
+    const live=(c.houses||[]).filter(h=>!h.sold).length;
+    const next=(c.houses||[]).filter(h=>!h.sold&&h.shoot).map(h=>h.shoot).sort().find(d=>du(d)>=0);
+    const net=netOf(c);
+    return`<tr class="row" onclick="go('client','${c.id}')"><td><div style="font-weight:600">${esc(c.real)}</div><div style="font-size:11.5px;color:var(--sub)">${esc(c.nick)}</div></td><td><span class="pill dim">${TL[c.tier]||'—'}</span></td><td style="color:var(--sub)">${live||'—'}</td><td style="font-size:13px;color:${next&&du(next)<=3?'var(--amb)':'var(--sub)'}">${next?fmt(next):'—'}</td><td style="color:${net>=0?'var(--grn)':'var(--red)'};font-weight:600">${money(net)}</td><td style="color:var(--sub)">›</td></tr>`;
+  }).join('')+'</tbody></table></div>';
 }
 
-function deleteLead(id) {
-  if (!confirm('Delete this lead?')) return;
-  DB.leads = (DB.leads||[]).filter(x=>x.id!==id);
-  save(); renderLeads();
+/* ── CLIENT DETAIL ── */
+function renderClient(){const c=C();if(!c)return;document.getElementById('c-name').textContent=c.real;document.getElementById('c-sub').textContent=`${TL[c.tier]} · Editors see "${c.nick}"${+c.value?' · '+money(c.value)+'/mo':''}`;document.getElementById('c-notes').value=c.notes||'';renderCHouses();renderCTasks();renderCFin();}
+function renderCHouses(){
+  const c=C();if(!c)return;
+  const el=document.getElementById('c-houses');
+  const houses=(c.houses||[]).slice().sort((a,b)=>(a.sold?1:0)-(b.sold?1:0)||(new Date(a.shoot||'9999')-new Date(b.shoot||'9999')));
+  if(!houses.length){el.innerHTML='<div class="empty" style="padding:12px 0">No houses yet</div>';return;}
+  el.innerHTML=houses.map(h=>`<div class="house-row" onclick="go('house','${c.id}','${h.id}')" style="${h.sold?'opacity:.45':''}"><div class="house-addr">${esc(h.addr)}</div><div class="house-dates"><div class="hd-item"><span class="hd-label">Shoot</span><span class="hd-val ${dcls(h.shoot)}">${h.shoot?fmt(h.shoot):'—'}</span></div><div class="hd-item"><span class="hd-label">Editor</span><span class="hd-val ${dcls(h.editorDue)}">${h.editorDue?fmt(h.editorDue):'—'}</span></div><div class="hd-item"><span class="hd-label">Live</span><span class="hd-val ${dcls(h.live)}">${h.live?fmt(h.live):'—'}</span></div></div><div style="display:flex;align-items:center;gap:6px;flex-shrink:0"><span class="pill ${h.sold?'dim':'grn'}">${h.sold?'Sold':'Live'}</span><span style="color:var(--sub)">›</span></div></div>`).join('');
 }
+function renderCTasks(){const c=C();if(!c)return;const ts=c.tasks||[];document.getElementById('c-tasks').innerHTML=ts.length?ts.map(t=>`<div class="task"><div class="chk ${t.done?'done':''}" onclick="toggleCT('${t.id}')"></div><div class="task-tx ${t.done?'done':''}">${esc(t.text)}</div>${!t.done?dueBadge(t.due):''}<button class="btn xs ghost" style="color:var(--sub)" onclick="delCT('${t.id}')">✕</button></div>`).join(''):'<div style="color:var(--sub);font-size:13px;padding:4px 0">No tasks</div>';}
+function addCTask(){const c=C();if(!c)return;const v=document.getElementById('ctxt').value.trim();if(!v)return;(c.tasks=c.tasks||[]).push({id:uid(),text:v,due:document.getElementById('cdue').value,done:false});save();document.getElementById('ctxt').value='';document.getElementById('cdue').value='';renderCTasks();}
+function toggleCT(id){const c=C();const t=(c.tasks||[]).find(x=>x.id===id);if(t)t.done=!t.done;save();renderCTasks();}
+function delCT(id){const c=C();c.tasks=(c.tasks||[]).filter(x=>x.id!==id);save();renderCTasks();}
+function renderCFin(){const c=C();if(!c)return;const fins=(c.finances||[]).slice().reverse();document.getElementById('c-fin').innerHTML=fins.length?fins.map(f=>`<div class="fin-row"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis">${esc(f.desc)}<span style="color:var(--sub);font-size:11.5px"> · ${fmt(f.date)}</span></span><span style="display:flex;gap:6px;align-items:center"><span class="${f.type==='income'?'fin-pos':'fin-neg'}">${f.type==='income'?'+':'−'}${money(f.amount)}</span><button class="btn xs ghost" style="color:var(--sub)" onclick="delFin('${f.id}')">✕</button></span></div>`).join(''):'<div style="color:var(--sub);font-size:13px;padding:4px 0">No entries</div>';const net=netOf(c);const ne=document.getElementById('c-net');ne.textContent=money(net);ne.style.color=net>=0?'var(--grn)':'var(--red)';}
+function delFin(id){const c=C();c.finances=(c.finances||[]).filter(x=>x.id!==id);save();renderCFin();}
+function saveCNotes(){const c=C();if(!c)return;c.notes=document.getElementById('c-notes').value;save();}
+
+/* ── HOUSE DETAIL ── */
+function renderHouse(){
+  const c=C(),h=H();if(!c||!h)return;
+  document.getElementById('h-addr').textContent=h.addr;
+  document.getElementById('h-sub').textContent=`${esc(c.real)} · ${TL[c.tier]}`;
+  document.getElementById('h-sold-btn').textContent=h.sold?'Mark live':'Mark sold';
+  [['h-shoot',h.shoot],['h-edue',h.editorDue],['h-live',h.live]].forEach(([id,d])=>{document.getElementById(id).textContent=d?fmtLong(d):'Not set';document.getElementById(id).className='ds-v '+dcls(d);document.getElementById(id+'-r').textContent=rel(d);});
+  const opts=DB.editors.map(e=>`<option value="${esc(e)}" ${h.editor===e?'selected':''}>${esc(e)}</option>`).join('');
+  document.getElementById('h-editor-wrap').innerHTML=`<select class="fi" onchange="setEditor(this.value)">${opts}</select><div style="font-size:11.5px;color:var(--sub);margin-top:8px">Editors see this client as "<b>${esc(c.nick)}</b>"</div>`;
+  renderHVids();renderHTasks();document.getElementById('h-notes').value=h.notes||'';
+}
+function setEditor(v){const h=H();if(!h)return;h.editor=v;save();}
+function toggleSold(){const h=H();if(!h)return;h.sold=!h.sold;save();renderHouse();}
+function saveHNotes(){const h=H();if(!h)return;h.notes=document.getElementById('h-notes').value;save();}
+function delHouse(){const c=C(),h=H();if(!c||!h)return;if(!confirm('Delete "'+h.addr+'" and all its data?'))return;c.houses=(c.houses||[]).filter(x=>x.id!==h.id);save();go('client',c.id);}
+function renderHVids(){const h=H();if(!h)return;const vs=h.videos||[];document.getElementById('h-vids').innerHTML=vs.length?vs.map(v=>`<div class="vid"><div class="chk ${v.done?'done':''}" onclick="toggleVid('${v.id}')"></div><div class="vid-name ${v.done?'done':''}">${esc(v.name)}</div><span class="pill ${v.done?'grn':'dim'}">${v.done?'Delivered':'Editing'}</span><button class="btn xs ghost" style="color:var(--sub)" onclick="delVid('${v.id}')">✕</button></div>`).join(''):'<div style="color:var(--sub);font-size:13px;padding:4px 0">No videos logged</div>';}
+function addVid(){const h=H();if(!h)return;const v=document.getElementById('vtxt').value.trim();if(!v)return;(h.videos=h.videos||[]).push({id:uid(),name:v,done:false});save();document.getElementById('vtxt').value='';renderHVids();}
+function toggleVid(id){const h=H();const v=(h.videos||[]).find(x=>x.id===id);if(v)v.done=!v.done;save();renderHVids();}
+function delVid(id){const h=H();h.videos=(h.videos||[]).filter(x=>x.id!==id);save();renderHVids();}
+function renderHTasks(){const h=H();if(!h)return;const ts=h.tasks||[];document.getElementById('h-tasks').innerHTML=ts.length?ts.map(t=>`<div class="task"><div class="chk ${t.done?'done':''}" onclick="toggleHT('${t.id}')"></div><div class="task-tx ${t.done?'done':''}">${esc(t.text)}</div>${!t.done?dueBadge(t.due):''}<button class="btn xs ghost" style="color:var(--sub)" onclick="delHT('${t.id}')">✕</button></div>`).join(''):'<div style="color:var(--sub);font-size:13px;padding:4px 0">No tasks</div>';}
+function addHTask(){const h=H();if(!h)return;const v=document.getElementById('htxt').value.trim();if(!v)return;(h.tasks=h.tasks||[]).push({id:uid(),text:v,due:document.getElementById('hdue').value,done:false});save();document.getElementById('htxt').value='';document.getElementById('hdue').value='';renderHTasks();}
+function toggleHT(id){const h=H();const t=(h.tasks||[]).find(x=>x.id===id);if(t)t.done=!t.done;save();renderHTasks();}
+function delHT(id){const h=H();h.tasks=(h.tasks||[]).filter(x=>x.id!==id);save();renderHTasks();}
 
 /* ── SCHEDULE ── */
-function renderSchedule() {
-  const el = document.getElementById('sched-body');
-  const evs = allEvents();
-  if (!evs.length) { el.innerHTML = '<div class="empty" style="padding:64px">No dates scheduled yet</div>'; return; }
-  const by = {};
-  evs.forEach(e => { const m=e.date.slice(0,7); (by[m]=by[m]||[]).push(e); });
-  el.innerHTML = Object.entries(by).map(([m,es]) => {
-    const label = new Date(m+'-15T12:00:00').toLocaleDateString('en-IE',{month:'long',year:'numeric'});
-    return `<div class="card"><div class="card-hd">${label}</div><table class="tbl"><thead><tr>
-      <th>Date</th><th>What</th><th>House</th><th>Client</th><th>Editor</th><th></th>
-    </tr></thead><tbody>` + es.map(e => `
-      <tr class="row" onclick="go('house','${e.c.id}','${e.h.id}')">
-        <td style="color:var(--sub);white-space:nowrap">${fmt(e.date)}</td>
-        <td style="font-weight:500;white-space:nowrap">${e.icon} ${e.type}</td>
-        <td style="color:var(--sub)">${esc(e.h.addr)}</td>
-        <td style="color:var(--sub);font-size:12.5px">${esc(e.c.real)}</td>
-        <td style="color:var(--sub);font-size:12.5px">${esc(e.h.editor||'—')}</td>
-        <td>${du(e.date)<0?'<span class="pill dim">past</span>':dueBadge(e.date)}</td>
-      </tr>`).join('') + '</tbody></table></div>';
+function renderSchedule(){
+  const el=document.getElementById('sched-body');const evs=allEvents();
+  if(!evs.length){el.innerHTML='<div class="empty" style="padding:64px">No dates scheduled yet</div>';return;}
+  const by={};evs.forEach(e=>{const m=e.date.slice(0,7);(by[m]=by[m]||[]).push(e);});
+  el.innerHTML=Object.entries(by).map(([m,es])=>{
+    const label=new Date(m+'-15T12:00:00').toLocaleDateString('en-IE',{month:'long',year:'numeric'});
+    return`<div class="card"><div class="card-hd">${label}</div><table class="tbl"><thead><tr><th>Date</th><th>What</th><th>House</th><th>Client</th><th>Editor</th><th></th></tr></thead><tbody>`+es.map(e=>`<tr class="row" onclick="go('house','${e.c.id}','${e.h.id}')"><td style="color:var(--sub);white-space:nowrap">${fmt(e.date)}</td><td style="font-weight:500;white-space:nowrap">${e.icon} ${e.type}</td><td style="color:var(--sub)">${esc(e.h.addr)}</td><td style="color:var(--sub);font-size:12.5px">${esc(e.c.real)}</td><td style="color:var(--sub);font-size:12.5px">${esc(e.h.editor||'—')}</td><td>${du(e.date)<0?'<span class="pill dim">past</span>':dueBadge(e.date)}</td></tr>`).join('')+'</tbody></table></div>';
   }).join('');
 }
 
 /* ── EDITORS ── */
-function renderEditors() {
-  document.getElementById('ed-list').innerHTML = DB.editors.map(e => {
-    const n = allHouses(true).filter(({h}) => h.editor===e).length;
-    return `<div class="task">
-      <div class="task-tx"><b>${esc(e)}</b></div>
-      <span class="pill dim">${n} house${n===1?'':'s'}</span>
-      ${e==='Unassigned'?'':`<button class="btn xs ghost" style="color:var(--sub)" onclick="delEditor('${esc(e)}')">✕</button>`}
-    </div>`;
-  }).join('');
-
-  const rows = [];
-  DB.clients.forEach(c => (c.houses||[]).filter(h=>!h.sold).forEach(h => {
-    (h.videos||[]).filter(v=>!v.done&&v.editor&&v.editor!=='Unassigned'&&v.editorDue).forEach(v => {
-      rows.push({editor:v.editor, vidName:v.name, h, c, due:v.editorDue});
-    });
-  }));
-  rows.sort((a,b) => new Date(a.due)-new Date(b.due));
-  document.getElementById('ed-load').innerHTML = rows.length ?
-    `<table class="tbl"><thead><tr><th>Editor</th><th>Video</th><th>House</th><th>Client (shown as)</th><th>Deadline</th><th></th></tr></thead><tbody>` +
-    rows.map(r => `<tr class="row" onclick="go('house','${r.c.id}','${r.h.id}')">
-      <td style="font-weight:500">${esc(r.editor)}</td>
-      <td style="color:var(--sub)">${esc(r.vidName)}</td>
-      <td style="color:var(--sub)">${esc(r.h.addr)}</td>
-      <td style="color:var(--sub);font-size:12.5px">${esc(r.c.nick)}</td>
-      <td>${fmt(r.due)}</td>
-      <td>${dueBadge(r.due)}</td>
-    </tr>`).join('') + '</tbody></table>'
-    : '<div class="empty">No assigned deadlines</div>';
+function renderEditors(){
+  document.getElementById('ed-list').innerHTML=DB.editors.map(e=>{const n=allHouses(true).filter(({h})=>h.editor===e).length;return`<div class="task"><div class="task-tx"><b>${esc(e)}</b></div><span class="pill dim">${n} house${n===1?'':'s'}</span>${e==='Unassigned'?'':`<button class="btn xs ghost" style="color:var(--sub)" onclick="delEditor('${esc(e)}')">✕</button>`}</div>`;}).join('');
+  const rows=[];DB.editors.forEach(e=>allHouses(true).filter(({h})=>h.editor===e&&h.editorDue).forEach(({h,c})=>rows.push({e,h,c})));
+  rows.sort((a,b)=>new Date(a.h.editorDue)-new Date(b.h.editorDue));
+  document.getElementById('ed-load').innerHTML=rows.length?`<table class="tbl"><thead><tr><th>Editor</th><th>House</th><th>Client (shown as)</th><th>Deadline</th><th></th></tr></thead><tbody>`+rows.map(r=>`<tr class="row" onclick="go('house','${r.c.id}','${r.h.id}')"><td style="font-weight:500">${esc(r.e)}</td><td style="color:var(--sub)">${esc(r.h.addr)}</td><td style="color:var(--sub);font-size:12.5px">${esc(r.c.nick)}</td><td>${fmt(r.h.editorDue)}</td><td>${dueBadge(r.h.editorDue)}</td></tr>`).join('')+'</tbody></table>':'<div class="empty">No assigned deadlines</div>';
 }
-function addEditor() {
-  const n = prompt('Editor name:'); if (!n || !n.trim()) return;
-  const v = n.trim(); if (DB.editors.includes(v)) return;
-  DB.editors.push(v); save(); renderEditors();
-}
-function delEditor(name) {
-  if (!confirm('Remove ' + name + '? Their houses become Unassigned.')) return;
-  DB.editors = DB.editors.filter(e=>e!==name);
-  DB.clients.forEach(c => (c.houses||[]).forEach(h => { if(h.editor===name) h.editor='Unassigned'; }));
-  save(); renderEditors();
-}
+function addEditor(){const n=prompt('Editor name:');if(!n||!n.trim())return;const v=n.trim();if(DB.editors.includes(v))return;DB.editors.push(v);save();renderEditors();}
+function delEditor(name){if(!confirm('Remove '+name+'?'))return;DB.editors=DB.editors.filter(e=>e!==name);DB.clients.forEach(c=>(c.houses||[]).forEach(h=>{if(h.editor===name)h.editor='Unassigned';}));save();renderEditors();}
 
 /* ── FINANCES ── */
-function renderFinances() {
-  const all = [];
-  DB.clients.forEach(c => (c.finances||[]).forEach(f => all.push({...f, cn:c.real, cid:c.id})));
-  all.sort((a,b) => new Date(b.date||'0') - new Date(a.date||'0'));
-  const inc = all.filter(f=>f.type==='income').reduce((a,f)=>a+(+f.amount),0);
-  const exp = all.filter(f=>f.type==='expense').reduce((a,f)=>a+(+f.amount),0);
-  const net = inc - exp;
-  document.getElementById('fi-inc').textContent = money(inc);
-  document.getElementById('fi-exp').textContent = money(exp);
-  const fn = document.getElementById('fi-net');
-  fn.textContent = money(net); fn.style.color = net >= 0 ? 'var(--grn)' : 'var(--red)';
-  document.getElementById('fin-all').innerHTML = all.length ? all.map(f => `
-    <div class="fin-row" style="cursor:pointer" onclick="go('client','${f.cid}')">
-      <span>${esc(f.desc)}<span style="color:var(--sub);font-size:11.5px"> · ${esc(f.cn)}</span></span>
-      <span style="display:flex;gap:10px;align-items:center">
-        <span style="color:var(--sub);font-size:12px">${fmt(f.date)}</span>
-        <span class="${f.type==='income'?'fin-pos':'fin-neg'}">${f.type==='income'?'+':'−'}${money(f.amount)}</span>
-      </span>
-    </div>`).join('') : '<div class="empty">No transactions</div>';
+function renderFinances(){
+  const all=[];DB.clients.forEach(c=>(c.finances||[]).forEach(f=>all.push({...f,cn:c.real,cid:c.id})));
+  all.sort((a,b)=>new Date(b.date||'0')-new Date(a.date||'0'));
+  const inc=all.filter(f=>f.type==='income').reduce((a,f)=>a+(+f.amount),0);
+  const exp=all.filter(f=>f.type==='expense').reduce((a,f)=>a+(+f.amount),0);
+  const net=inc-exp;
+  document.getElementById('fi-inc').textContent=money(inc);document.getElementById('fi-exp').textContent=money(exp);
+  const fn=document.getElementById('fi-net');fn.textContent=money(net);fn.style.color=net>=0?'var(--grn)':'var(--red)';
+  document.getElementById('fin-all').innerHTML=all.length?all.map(f=>`<div class="fin-row" style="cursor:pointer" onclick="go('client','${f.cid}')"><span>${esc(f.desc)}<span style="color:var(--sub);font-size:11.5px"> · ${esc(f.cn)}</span></span><span style="display:flex;gap:10px;align-items:center"><span style="color:var(--sub);font-size:12px">${fmt(f.date)}</span><span class="${f.type==='income'?'fin-pos':'fin-neg'}">${f.type==='income'?'+':'−'}${money(f.amount)}</span></span></div>`).join(''):'<div class="empty">No transactions</div>';
 }
-function exportCSV() {
-  const rows = [['Date','Client','Description','Type','Amount']];
-  DB.clients.forEach(c => (c.finances||[]).forEach(f => rows.push([f.date,c.real,f.desc,f.type,f.amount])));
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n'));
-  a.download = 'finances_'+today()+'.csv'; a.click();
-}
+function exportCSV(){const rows=[['Date','Client','Description','Type','Amount']];DB.clients.forEach(c=>(c.finances||[]).forEach(f=>rows.push([f.date,c.real,f.desc,f.type,f.amount])));const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n'));a.download='finances_'+today()+'.csv';a.click();}
 
 /* ── FINANCE MODAL ── */
-function openFin(type) {
-  finType = type;
-  document.getElementById('fin-ttl').textContent = type==='income' ? 'Add income' : 'Add expense';
-  document.getElementById('fm-desc').value = '';
-  document.getElementById('fm-amt').value = '';
-  document.getElementById('fm-date').value = today();
-  document.getElementById('fin-ovl').classList.add('on');
-  setTimeout(() => document.getElementById('fm-desc').focus(), 60);
-}
-function closeFinM() { document.getElementById('fin-ovl').classList.remove('on'); }
-function saveFinM() {
-  const c=C(); if(!c) return;
-  const desc = document.getElementById('fm-desc').value.trim();
-  const amt = parseFloat(document.getElementById('fm-amt').value);
-  if (!desc || isNaN(amt)) return;
-  (c.finances=c.finances||[]).push({id:uid(),desc,amount:amt,type:finType,date:document.getElementById('fm-date').value||today()});
-  save(); closeFinM(); renderCFin();
-}
+function openFin(type){finType=type;document.getElementById('fin-ttl').textContent=type==='income'?'Add income':'Add expense';document.getElementById('fm-desc').value='';document.getElementById('fm-amt').value='';document.getElementById('fm-date').value=today();document.getElementById('fin-ovl').classList.add('on');setTimeout(()=>document.getElementById('fm-desc').focus(),60);}
+function closeFinM(){document.getElementById('fin-ovl').classList.remove('on');}
+function saveFinM(){const c=C();if(!c)return;const desc=document.getElementById('fm-desc').value.trim();const amt=parseFloat(document.getElementById('fm-amt').value);if(!desc||isNaN(amt))return;(c.finances=c.finances||[]).push({id:uid(),desc,amount:amt,type:finType,date:document.getElementById('fm-date').value||today()});save();closeFinM();renderCFin();}
 
 /* ── HOUSE MODAL ── */
-function openHouseModal(edit) {
-  const c=C(); if(!c) return;
-  editingHouse = !!edit;
-  const h = edit ? H() : null;
-  document.getElementById('hm-ttl').textContent = edit ? 'Edit house' : 'Add house';
-  document.getElementById('hm-save-btn').textContent = edit ? 'Save' : 'Add house';
-  document.getElementById('hm-addr').value = h?.addr || '';
-  document.getElementById('hm-shoot').value = h?.shoot || '';
-  document.getElementById('hm-ovl').classList.add('on');
-  setTimeout(() => document.getElementById('hm-addr').focus(), 60);
-}
-function closeHM() { document.getElementById('hm-ovl').classList.remove('on'); }
-function saveHM() {
-  const c=C(); if(!c) return;
-  const addr = document.getElementById('hm-addr').value.trim(); if(!addr) return;
-  const data = { addr, shoot: document.getElementById('hm-shoot').value };
-  if (editingHouse) {
-    const h = H(); if(h) Object.assign(h, data);
-    save(); closeHM(); renderHouse();
-  } else {
-    const h = {id:uid(), ...data, sold:false, tasks:[], videos:[]};
-    (c.houses=c.houses||[]).push(h);
-    save(); closeHM(); go('house', c.id, h.id);
-  }
-}
+function openHouseModal(edit){const c=C();if(!c)return;editingHouse=!!edit;const h=edit?H():null;document.getElementById('hm-ttl').textContent=edit?'Edit house':'Add house';document.getElementById('hm-save-btn').textContent=edit?'Save changes':'Add house';document.getElementById('hm-addr').value=h?.addr||'';document.getElementById('hm-shoot').value=h?.shoot||'';document.getElementById('hm-edue').value=h?.editorDue||'';document.getElementById('hm-live').value=h?.live||'';document.getElementById('hm-notes').value=h?.notes||'';document.getElementById('hm-editor').innerHTML=DB.editors.map(e=>`<option value="${esc(e)}" ${h?.editor===e?'selected':''}>${esc(e)}</option>`).join('');document.getElementById('hm-ovl').classList.add('on');setTimeout(()=>document.getElementById('hm-addr').focus(),60);}
+function closeHM(){document.getElementById('hm-ovl').classList.remove('on');}
+function saveHM(){const c=C();if(!c)return;const addr=document.getElementById('hm-addr').value.trim();if(!addr)return;const data={addr,shoot:document.getElementById('hm-shoot').value,editorDue:document.getElementById('hm-edue').value,live:document.getElementById('hm-live').value,editor:document.getElementById('hm-editor').value,notes:document.getElementById('hm-notes').value.trim()};if(editingHouse){const h=H();if(h)Object.assign(h,data);save();closeHM();renderHouse();}else{const h={id:uid(),...data,sold:false,tasks:[],videos:[]};(c.houses=c.houses||[]).push(h);save();closeHM();go('house',c.id,h.id);}}
 
 /* ── CLIENT EDIT ── */
-function openClientEdit() {
-  const c=C(); if(!c) return;
-  document.getElementById('ce-real').value = c.real;
-  document.getElementById('ce-nick').value = c.nick;
-  document.getElementById('ce-tier').value = c.tier;
-  document.getElementById('ce-val').value = c.value || '';
-  document.getElementById('ce-ovl').classList.add('on');
-}
-function closeCE() { document.getElementById('ce-ovl').classList.remove('on'); }
-function saveCE() {
-  const c=C(); if(!c) return;
-  const r = document.getElementById('ce-real').value.trim(); if(!r) return;
-  c.real = r;
-  c.nick = document.getElementById('ce-nick').value.trim() || r;
-  c.tier = +document.getElementById('ce-tier').value;
-  c.value = document.getElementById('ce-val').value || 0;
-  save(); closeCE(); go('client', c.id);
-}
-function delClient() {
-  const c=C(); if(!c) return;
-  if(!confirm('Delete ' + c.real + ' and all their houses?')) return;
-  DB.clients = DB.clients.filter(x=>x.id!==c.id); save(); go('clients');
-}
+function openClientEdit(){const c=C();if(!c)return;document.getElementById('ce-real').value=c.real;document.getElementById('ce-nick').value=c.nick;document.getElementById('ce-tier').value=c.tier;document.getElementById('ce-val').value=c.value||'';document.getElementById('ce-ovl').classList.add('on');}
+function closeCE(){document.getElementById('ce-ovl').classList.remove('on');}
+function saveCE(){const c=C();if(!c)return;const r=document.getElementById('ce-real').value.trim();if(!r)return;c.real=r;c.nick=document.getElementById('ce-nick').value.trim()||r;c.tier=+document.getElementById('ce-tier').value;c.value=document.getElementById('ce-val').value||0;save();closeCE();go('client',c.id);}
+function delClient(){const c=C();if(!c)return;if(!confirm('Delete '+c.real+' and all their houses?'))return;DB.clients=DB.clients.filter(x=>x.id!==c.id);save();go('clients');}
 
-/* ── ADD CLIENT WIZARD ── */
-let wd = {};
-function openWiz() {
-  wd = {};
-  ['w-real','w-nick','w-val'].forEach(i => document.getElementById(i).value='');
-  document.querySelectorAll('.ws').forEach(s => s.classList.remove('on'));
-  document.getElementById('ws1').classList.add('on');
-  document.getElementById('wiz-ovl').classList.add('on');
-  setTimeout(() => document.getElementById('w-real').focus(), 60);
-}
-function closeWiz() { document.getElementById('wiz-ovl').classList.remove('on'); }
-function wNext(s) {
-  if (s===1) {
-    const v = document.getElementById('w-real').value.trim(); if(!v) return;
-    wd.real = v;
-    if (!document.getElementById('w-nick').value)
-      document.getElementById('w-nick').value = 'Client ' + String.fromCharCode(65+DB.clients.length);
-  }
-  if (s===2) wd.nick = document.getElementById('w-nick').value.trim() || wd.real;
-  document.getElementById('ws'+s).classList.remove('on');
-  document.getElementById('ws'+(s+1)).classList.add('on');
-  const f = {2:'w-nick',4:'w-val'};
-  if (f[s+1]) setTimeout(() => document.getElementById(f[s+1]).focus(), 60);
-}
-function wBack(s) { document.getElementById('ws'+s).classList.remove('on'); document.getElementById('ws'+(s-1)).classList.add('on'); }
-function pickTier(t) {
-  wd.tier = t;
-  document.getElementById('ws3').classList.remove('on');
-  document.getElementById('ws4').classList.add('on');
-  setTimeout(() => document.getElementById('w-val').focus(), 60);
-}
-function wFinish() {
-  const c = {id:uid(), real:wd.real, nick:wd.nick||wd.real, tier:wd.tier||1, value:document.getElementById('w-val').value||0, houses:[], tasks:[], finances:[], notes:''};
-  DB.clients.push(c); save(); closeWiz(); go('client', c.id);
-}
+/* ── WIZARD ── */
+let wd={};
+function openWiz(){wd={};['w-real','w-nick','w-val'].forEach(i=>document.getElementById(i).value='');document.querySelectorAll('.ws').forEach(s=>s.classList.remove('on'));document.getElementById('ws1').classList.add('on');document.getElementById('wiz-ovl').classList.add('on');setTimeout(()=>document.getElementById('w-real').focus(),60);}
+function closeWiz(){document.getElementById('wiz-ovl').classList.remove('on');}
+function wNext(s){if(s===1){const v=document.getElementById('w-real').value.trim();if(!v)return;wd.real=v;if(!document.getElementById('w-nick').value)document.getElementById('w-nick').value='Client '+String.fromCharCode(65+DB.clients.length);}if(s===2)wd.nick=document.getElementById('w-nick').value.trim()||wd.real;document.getElementById('ws'+s).classList.remove('on');document.getElementById('ws'+(s+1)).classList.add('on');const f={2:'w-nick',4:'w-val'};if(f[s+1])setTimeout(()=>document.getElementById(f[s+1]).focus(),60);}
+function wBack(s){document.getElementById('ws'+s).classList.remove('on');document.getElementById('ws'+(s-1)).classList.add('on');}
+function pickTier(t){wd.tier=t;document.getElementById('ws3').classList.remove('on');document.getElementById('ws4').classList.add('on');setTimeout(()=>document.getElementById('w-val').focus(),60);}
+function wFinish(){const c={id:uid(),real:wd.real,nick:wd.nick||wd.real,tier:wd.tier||1,value:document.getElementById('w-val').value||0,houses:[],tasks:[],finances:[],notes:''};DB.clients.push(c);save();closeWiz();go('client',c.id);}
 
 /* ── KEYBOARD ── */
-document.addEventListener('keydown', e => {
-  if (e.key==='Escape') { document.querySelectorAll('.ovl.on').forEach(o => o.classList.remove('on')); editingVid=null; }
-  if (e.key==='Enter' && document.getElementById('wiz-ovl').classList.contains('on')) {
-    const b = document.querySelector('.ws.on .btn.pri'); if(b) b.click();
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    if(document.getElementById('login-screen').style.display!=='none')tryLogin();
+    else if(document.getElementById('token-screen').style.display!=='none')saveToken();
   }
+  if(e.key==='Escape')document.querySelectorAll('.ovl.on').forEach(o=>o.classList.remove('on'));
+  if(e.key==='Enter'&&document.getElementById('wiz-ovl').classList.contains('on')){const b=document.querySelector('.ws.on .btn.pri');if(b)b.click();}
 });
 
 showLogin();
 </script>
-<!-- MOBILE BOTTOM NAV -->
-<nav class="bot-nav">
-  <div class="bot-nav-inner">
-    <button class="bn on" data-p="overview" onclick="go('overview')"><span class="bn-ico">▦</span>Home</button>
-    <button class="bn" data-p="leads" onclick="go('leads')"><span class="bn-ico">◎</span>Leads</button>
-    <button class="bn" data-p="clients" onclick="go('clients')"><span class="bn-ico">⊕</span>Clients</button>
-    <button class="bn" data-p="schedule" onclick="go('schedule')"><span class="bn-ico">◫</span>Schedule</button>
-    <button class="bn" data-p="editors" onclick="go('editors')"><span class="bn-ico">✎</span>Editors</button>
-    <button class="bn" data-p="finances" onclick="go('finances')"><span class="bn-ico">◈</span>Finances</button>
-  </div>
-</nav>
-
-</div>
 </body>
 </html>
