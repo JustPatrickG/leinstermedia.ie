@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Results — Leinster Media</title>
+  <meta name="description" content="Real results from Leinster Media listing campaigns — views, leads, and cost-per-lead." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="loader" id="loader"><h1 class="title" id="loaderTitle">Leinster Media</h1></div>
+  <a class="back-link" href="index.html">&larr; back</a>
+  <main class="screen" id="screen">
+    <div class="page-wrap">
+
+      <div class="section">
+        <span class="eyebrow">Numbers</span>
+        <h1 class="section-heading">What the campaigns actually do</h1>
+        <div class="stats">
+          <div class="stat"><span class="stat-num">€3.40</span><span class="stat-label">avg. cost per lead</span></div>
+          <div class="stat"><span class="stat-num">18</span><span class="stat-label">avg. leads per listing</span></div>
+          <div class="stat"><span class="stat-num">4.2×</span><span class="stat-label">more viewings vs organic only</span></div>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="section">
+        <span class="eyebrow">Campaign snapshots</span>
+        <div class="result-grid">
+
+          <div class="result-card">
+            <span class="result-meta">3-bed semi · Naas · Full funnel</span>
+            <p class="result-headline">22 viewing enquiries in the first week. Sale agreed within 11 days of going live.</p>
+            <div class="result-nums">
+              <div class="result-num"><span class="result-n">€2.80</span><span class="result-nl">cost per lead</span></div>
+              <div class="result-num"><span class="result-n">22</span><span class="result-nl">leads</span></div>
+              <div class="result-num"><span class="result-n">14k</span><span class="result-nl">video views</span></div>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <span class="result-meta">4-bed detached · Newbridge · Full funnel</span>
+            <p class="result-headline">Highest-viewed listing the agent had run in two years. 31 leads, sold above asking.</p>
+            <div class="result-nums">
+              <div class="result-num"><span class="result-n">€3.10</span><span class="result-nl">cost per lead</span></div>
+              <div class="result-num"><span class="result-n">31</span><span class="result-nl">leads</span></div>
+              <div class="result-num"><span class="result-n">22k</span><span class="result-nl">video views</span></div>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <span class="result-meta">2-bed apartment · Kildare town · Content + organic</span>
+            <p class="result-headline">Reel hit 8k views organically in 48 hours. Viewing slots filled within 3 days.</p>
+            <div class="result-nums">
+              <div class="result-num"><span class="result-n">8k</span><span class="result-nl">organic views</span></div>
+              <div class="result-num"><span class="result-n">3 days</span><span class="result-nl">to fill viewings</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="cta-block">
+        <p class="body-text">First shoot is free. No commitment until you've seen what the content looks like on your listings.</p>
+        <a class="cta-link" href="contact.html">Start with a free shoot &rarr;</a>
+      </div>
+
+    </div>
+  </main>
+  <script src="brand.js"></script>
+  <script>
+    const loader = document.getElementById('loader');
+    const loaderTitle = document.getElementById('loaderTitle');
+    const screenEl = document.getElementById('screen');
+    growBrandTitle(loaderTitle, () => {
+      setTimeout(() => { loader.classList.add('fade-out'); screenEl.classList.add('show'); setTimeout(() => loader.remove(), 480); }, 500);
+    });
+  </script>
+</body>
+</html>

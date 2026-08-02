@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Contact — Leinster Media</title>
+  <meta name="description" content="Get in touch with Leinster Media about your listings." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="loader" id="loader"><h1 class="title" id="loaderTitle">Leinster Media</h1></div>
+  <a class="back-link" href="index.html">&larr; back</a>
+  <main class="screen" id="screen">
+    <div class="contact-wrap">
+      <div class="section">
+        <span class="eyebrow">Get in touch</span>
+        <h1 class="section-heading">Let's talk about your listings</h1>
+        <p class="body-text">Whether you want to trial a free shoot on one listing or discuss a full monthly retainer, drop a message and we'll get back to you the same day.</p>
+      </div>
+      <div class="section">
+        <a class="cta-link" href="mailto:contact@leinstermedia.ie">contact@leinstermedia.ie &rarr;</a>
+      </div>
+    </div>
+  </main>
+  <script src="brand.js"></script>
+  <script>
+    const loader = document.getElementById('loader');
+    const loaderTitle = document.getElementById('loaderTitle');
+    const screenEl = document.getElementById('screen');
+    growBrandTitle(loaderTitle, () => {
+      setTimeout(() => { loader.classList.add('fade-out'); screenEl.classList.add('show'); setTimeout(() => loader.remove(), 480); }, 500);
+    });
+  </script>
+</body>
+</html>
