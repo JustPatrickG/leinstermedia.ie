@@ -13,15 +13,11 @@
 </head>
 <body>
 
-  <div class="video-bg" id="videoBg">
-    <video id="bgVideo" autoplay muted loop playsinline></video>
-    <div class="video-overlay"></div>
-  </div>
-
   <main class="screen" id="screen">
     <h1 class="title" id="title">Leinster Media</h1>
     <nav class="menu" id="menu" aria-label="Site navigation">
       <a class="menu-item" href="packages.html">packages</a>
+      <a class="menu-item" href="portfolio.html">portfolio</a>
       <a class="menu-item" href="results.html">results</a>
       <a class="menu-item" href="contact.html">contact</a>
     </nav>
@@ -33,20 +29,6 @@
     const title = document.getElementById('title');
     const menu = document.getElementById('menu');
     const menuItems = document.querySelectorAll('#menu .menu-item');
-    const videoBg = document.getElementById('videoBg');
-    const bgVideo = document.getElementById('bgVideo');
-
-    // Portrait on mobile, landscape on desktop — fallback to reel.mp4 if specific file missing
-    const isMobile = window.innerWidth < 640;
-    const preferred = isMobile ? 'reel.mp4' : 'reel2.mp4';
-
-    function loadVideo(src, fallback) {
-      bgVideo.src = src;
-      bgVideo.onerror = () => { if (fallback) { bgVideo.src = fallback; bgVideo.load(); bgVideo.play().catch(() => {}); } };
-      bgVideo.load();
-    }
-
-    loadVideo(preferred, 'reel.mp4');
 
     screenEl.classList.add('show');
 
@@ -54,8 +36,6 @@
       setTimeout(() => {
         title.classList.add('rise');
         setTimeout(() => {
-          bgVideo.play().catch(() => {});
-          videoBg.classList.add('show');
           menu.style.opacity = '1';
           menuItems.forEach((item, i) => {
             setTimeout(() => item.classList.add('show'), i * 130);
