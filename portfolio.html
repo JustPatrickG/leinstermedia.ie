@@ -11,19 +11,30 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    .pf-wrap { max-width: 720px; width: 100%; margin: 0 auto; padding: 7rem 2rem 5rem; display: flex; flex-direction: column; gap: 2.2rem; }
-    .pf-carousel { position: relative; width: 100%; }
-    .pf-track { position: relative; width: 100%; aspect-ratio: 9 / 16; max-height: 78vh; margin: 0 auto; background: #050505; border: 1px solid var(--fg-faint); border-radius: 4px; overflow: hidden; }
-    .pf-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 400ms ease; pointer-events: none; }
-    .pf-video.active { opacity: 1; pointer-events: auto; }
-    .pf-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55); border: 1px solid var(--fg-faint2); color: var(--fg); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: background 200ms ease, border-color 200ms ease; z-index: 5; }
+    .pf-wrap { max-width: 760px; width: 100%; margin: 0 auto; padding: 7rem 2rem 5rem; display: flex; flex-direction: column; gap: 2.2rem; }
+
+    /* Desktop: both videos side by side, no nav needed */
+    .pf-carousel { position: relative; width: 100%; display: flex; justify-content: center; gap: 1.4rem; }
+    .pf-track { position: relative; width: min(46%, 320px); aspect-ratio: 9 / 16; max-height: 70vh; background: #050505; border: 1px solid var(--fg-faint); border-radius: 4px; overflow: hidden; }
+    .pf-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+
+    .pf-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55); border: 1px solid var(--fg-faint2); color: var(--fg); width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: background 200ms ease, border-color 200ms ease; z-index: 5; }
     .pf-nav:hover { background: rgba(0,0,0,0.8); border-color: var(--fg); }
-    .pf-prev { left: 12px; }
-    .pf-next { right: 12px; }
-    .pf-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1.2rem; }
+    .pf-prev { left: -4px; }
+    .pf-next { right: -4px; }
+    .pf-dots { display: none; justify-content: center; gap: 8px; margin-top: 1.2rem; }
     .pf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--fg-faint2); border: none; cursor: pointer; padding: 0; transition: background 200ms ease, transform 200ms ease; }
     .pf-dot.active { background: var(--ac); transform: scale(1.3); }
-    .pf-counter { text-align: center; font-size: 0.78rem; color: var(--fg-dim); letter-spacing: 0.05em; margin-top: 0.6rem; }
+    .pf-counter { display: none; text-align: center; font-size: 0.78rem; color: var(--fg-dim); letter-spacing: 0.05em; margin-top: 0.6rem; }
+
+    /* Mobile: one video at a time, with nav */
+    @media (max-width: 720px) {
+      .pf-track { width: min(100%, 340px); }
+      .pf-track.pf-hide-mobile { display: none; }
+      .pf-nav { display: flex; }
+      .pf-dots { display: flex; }
+      .pf-counter { display: block; }
+    }
   </style>
 </head>
 <body>
@@ -44,12 +55,11 @@
       </div>
 
       <div class="pf-carousel">
-        <div class="pf-track" id="pfTrack">
-          <video class="pf-video active" src="reel1.mp4" muted loop playsinline preload="metadata"></video>
-          <video class="pf-video" src="reel2.mov" muted loop playsinline preload="metadata"></video>
-          <video class="pf-video" src="reel3.mp4" muted loop playsinline preload="metadata"></video>
-          <video class="pf-video" src="reel4.mp4" muted loop playsinline preload="metadata"></video>
-          <video class="pf-video" src="reel5.mp4" muted loop playsinline preload="metadata"></video>
+        <div class="pf-track" id="pfTrack0">
+          <video class="pf-video" id="pfVid0" src="reel1.mp4" muted loop playsinline preload="metadata" autoplay></video>
+        </div>
+        <div class="pf-track pf-hide-mobile" id="pfTrack1">
+          <video class="pf-video" id="pfVid1" src="reel2.mov" muted loop playsinline preload="metadata"></video>
         </div>
         <button class="pf-nav pf-prev" onclick="pfMove(-1)" aria-label="Previous video">&larr;</button>
         <button class="pf-nav pf-next" onclick="pfMove(1)" aria-label="Next video">&rarr;</button>
@@ -81,57 +91,59 @@
       }, 500);
     });
 
-    // ── Carousel ──
-    const videos = Array.from(document.querySelectorAll('.pf-video'));
+    // ── Portfolio: side-by-side on desktop, one-at-a-time carousel on mobile ──
+    const tracks = [document.getElementById('pfTrack0'), document.getElementById('pfTrack1')];
+    const vids = [document.getElementById('pfVid0'), document.getElementById('pfVid1')];
     const dotsWrap = document.getElementById('pfDots');
     const counter = document.getElementById('pfCounter');
     let pfIndex = 0;
 
-    videos.forEach((v, i) => {
+    vids.forEach((v, i) => {
       const dot = document.createElement('button');
       dot.className = 'pf-dot' + (i === 0 ? ' active' : '');
       dot.setAttribute('aria-label', 'Go to video ' + (i + 1));
       dot.addEventListener('click', () => pfGoTo(i));
       dotsWrap.appendChild(dot);
-
-      // Skip a video that fails to load (e.g. file not yet uploaded)
-      v.addEventListener('error', () => {
-        v.dataset.broken = 'true';
-        if (i === pfIndex) pfMove(1);
-      });
+      v.play().catch(() => {});
     });
 
+    function isMobile() { return window.innerWidth <= 720; }
+
     function updateCounter() {
-      counter.textContent = (pfIndex + 1) + ' / ' + videos.length;
+      counter.textContent = (pfIndex + 1) + ' / ' + vids.length;
     }
 
     function pfGoTo(i) {
-      videos[pfIndex].classList.remove('active');
-      videos[pfIndex].pause();
-      dotsWrap.children[pfIndex].classList.remove('active');
-
-      pfIndex = (i + videos.length) % videos.length;
-
-      videos[pfIndex].classList.add('active');
-      videos[pfIndex].currentTime = 0;
-      videos[pfIndex].play().catch(() => {});
-      dotsWrap.children[pfIndex].classList.add('active');
+      pfIndex = (i + vids.length) % vids.length;
+      if (isMobile()) {
+        tracks[0].classList.toggle('pf-hide-mobile', pfIndex !== 0);
+        tracks[1].classList.toggle('pf-hide-mobile', pfIndex !== 1);
+      }
+      Array.from(dotsWrap.children).forEach((d, idx) => d.classList.toggle('active', idx === pfIndex));
       updateCounter();
     }
 
     function pfMove(dir) { pfGoTo(pfIndex + dir); }
 
     updateCounter();
-    videos[0].play().catch(() => {});
 
     // Swipe support on mobile
     let touchStartX = 0;
-    const track = document.getElementById('pfTrack');
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
+    document.querySelector('.pf-carousel').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    document.querySelector('.pf-carousel').addEventListener('touchend', e => {
       const dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) > 40) pfMove(dx < 0 ? 1 : -1);
     }, { passive: true });
+
+    // Handle resize: reset to showing both on desktop
+    window.addEventListener('resize', () => {
+      if (!isMobile()) {
+        tracks[0].classList.remove('pf-hide-mobile');
+        tracks[1].classList.remove('pf-hide-mobile');
+      } else {
+        pfGoTo(pfIndex);
+      }
+    });
   </script>
 </body>
 </html>
