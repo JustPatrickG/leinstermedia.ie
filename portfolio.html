@@ -17,6 +17,9 @@
     .pf-carousel { position: relative; width: 100%; display: flex; justify-content: center; gap: 1.4rem; }
     .pf-track { position: relative; width: min(46%, 320px); aspect-ratio: 9 / 16; max-height: 70vh; background: #050505; border: 1px solid var(--fg-faint); border-radius: 4px; overflow: hidden; }
     .pf-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+    .pf-mute { position: absolute; bottom: 10px; right: 10px; z-index: 6; background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.35); color: #fff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: background 200ms ease, border-color 200ms ease, transform 150ms ease; }
+    .pf-mute:hover { background: rgba(0,0,0,0.85); border-color: var(--ac); }
+    .pf-mute.unmuted { border-color: var(--ac); color: var(--ac); }
 
     .pf-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.55); border: 1px solid var(--fg-faint2); color: var(--fg); width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: background 200ms ease, border-color 200ms ease; z-index: 5; }
     .pf-nav:hover { background: rgba(0,0,0,0.8); border-color: var(--fg); }
@@ -57,9 +60,11 @@
       <div class="pf-carousel">
         <div class="pf-track" id="pfTrack0">
           <video class="pf-video" id="pfVid0" src="reel1.mp4" muted loop playsinline preload="metadata" autoplay></video>
+          <button class="pf-mute" id="pfMute0" onclick="toggleMute(0)" aria-label="Unmute video">🔇</button>
         </div>
         <div class="pf-track pf-hide-mobile" id="pfTrack1">
           <video class="pf-video" id="pfVid1" src="reel2.mov" muted loop playsinline preload="metadata"></video>
+          <button class="pf-mute" id="pfMute1" onclick="toggleMute(1)" aria-label="Unmute video">🔇</button>
         </div>
         <button class="pf-nav pf-prev" onclick="pfMove(-1)" aria-label="Previous video">&larr;</button>
         <button class="pf-nav pf-next" onclick="pfMove(1)" aria-label="Next video">&rarr;</button>
@@ -108,6 +113,31 @@
     });
 
     function isMobile() { return window.innerWidth <= 720; }
+
+    function toggleMute(i) {
+      const v = vids[i];
+      const btn = document.getElementById('pfMute' + i);
+      v.muted = !v.muted;
+      if (!v.muted) {
+        // Mute the other video so only one plays sound at a time
+        vids.forEach((other, idx) => {
+          if (idx !== i) {
+            other.muted = true;
+            const otherBtn = document.getElementById('pfMute' + idx);
+            otherBtn.textContent = '🔇';
+            otherBtn.classList.remove('unmuted');
+            otherBtn.setAttribute('aria-label', 'Unmute video');
+          }
+        });
+        btn.textContent = '🔊';
+        btn.classList.add('unmuted');
+        btn.setAttribute('aria-label', 'Mute video');
+      } else {
+        btn.textContent = '🔇';
+        btn.classList.remove('unmuted');
+        btn.setAttribute('aria-label', 'Unmute video');
+      }
+    }
 
     function updateCounter() {
       counter.textContent = (pfIndex + 1) + ' / ' + vids.length;
