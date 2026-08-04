@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Packages — LM Trade Services</title>
+  <meta name="description" content="Video packages for trade businesses — content only, organic posting, or full paid lead generation." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <h1 class="title" id="loaderTitle">Leinster Media</h1>
+  </div>
+
+  <a class="back-link" href="trade.html">&larr; back</a>
+
+  <main class="screen" id="screen">
+    <div class="page-wrap">
+
+      <div class="section">
+        <span class="eyebrow">What we do</span>
+        <h1 class="section-heading">More calls booked.<br>Less time chasing work.</h1>
+        <p class="body-text">
+          We shoot short-form video of your jobs — before/afters, live work, customer reactions —
+          and turn it into a steady stream of booked calls. Cost-per-lead is the number we're
+          always chasing down.
+        </p>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="section">
+        <span class="eyebrow">Packages</span>
+
+        <div class="packages">
+
+          <div class="pkg">
+            <div class="pkg-header">
+              <span class="pkg-name">Content only</span>
+              <span class="pkg-tag">Tier 1</span>
+            </div>
+            <p class="pkg-desc">
+              We shoot and edit short-form video from your jobs.
+              You get the footage — post it wherever you like.
+            </p>
+            <div class="pkg-includes">
+              <span class="pkg-line">On-site shoot, fitted around your schedule</span>
+              <span class="pkg-line">Edited vertical video, ready to post</span>
+              <span class="pkg-line">Delivered to your phone or email</span>
+            </div>
+          </div>
+
+          <div class="pkg">
+            <div class="pkg-header">
+              <span class="pkg-name">Content + organic</span>
+              <span class="pkg-tag">Tier 2</span>
+            </div>
+            <p class="pkg-desc">
+              Everything in Tier 1, plus we handle posting across your social accounts —
+              a steady drip of jobs going out without you lifting a finger.
+            </p>
+            <div class="pkg-includes">
+              <span class="pkg-line">Everything in Content only</span>
+              <span class="pkg-line">Scheduled posting across your platforms</span>
+              <span class="pkg-line">Captions and hashtags included</span>
+            </div>
+          </div>
+
+          <div class="pkg">
+            <div class="pkg-header">
+              <span class="pkg-name">Full funnel</span>
+              <span class="pkg-tag">Tier 3</span>
+            </div>
+            <p class="pkg-desc">
+              The complete package. Content, organic posting, and Meta Lead Ad campaigns
+              running simultaneously — so while the organic posts build trust, the paid
+              ads are actively generating booked calls.
+            </p>
+            <div class="pkg-includes">
+              <span class="pkg-line">Everything in Content + organic</span>
+              <span class="pkg-line">Meta Lead Ad campaign setup and management</span>
+              <span class="pkg-line">Instant Form — customers book directly in Facebook/Instagram</span>
+              <span class="pkg-line">Weekly cost-per-lead reporting</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="cta-block">
+        <p class="body-text">Pricing is tailored to your job volume and area. First shoot is on us — no commitment.</p>
+        <a class="cta-link" href="trade-contact.html">Get in touch &rarr;</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="brand.js"></script>
+  <script>
+    const loader = document.getElementById('loader');
+    const loaderTitle = document.getElementById('loaderTitle');
+    const screenEl = document.getElementById('screen');
+    growBrandTitle(loaderTitle, () => {
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        screenEl.classList.add('show');
+        setTimeout(() => loader.remove(), 480);
+      }, 500);
+    }, 'LM Trade Services', [0, 1]);
+  </script>
+</body>
+</html>

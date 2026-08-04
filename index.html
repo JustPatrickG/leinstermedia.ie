@@ -4,31 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Leinster Media</title>
-  <meta name="description" content="Short-form video and paid lead generation for estate agents across Leinster." />
+  <meta name="description" content="Short-form video and paid lead generation — for estate agents and trade businesses across Leinster." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .paths {
+      display: flex;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 550ms ease, transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .paths.show { opacity: 1; transform: translateY(0); }
+
+    .path-card {
+      width: 170px;
+      padding: 1.8rem 1.3rem;
+      border: 1px solid var(--fg-faint);
+      background: transparent;
+      color: var(--fg);
+      cursor: pointer;
+      font-family: var(--font);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      transition: border-color 250ms ease, background 250ms ease, transform 200ms ease, opacity 300ms ease;
+    }
+    .path-card:hover {
+      border-color: var(--ac);
+      background: rgba(200, 240, 74, 0.04);
+      transform: translateY(-3px);
+    }
+    .path-icon { font-size: 1.5rem; opacity: 0.85; }
+    .path-name { font-size: 0.92rem; font-weight: 500; letter-spacing: 0.02em; }
+
+    .path-card.pf-coming-soon {
+      cursor: default;
+      color: var(--fg-dim);
+      user-select: none;
+    }
+    .path-card.pf-coming-soon:hover {
+      border-color: var(--fg-faint);
+      background: transparent;
+      transform: none;
+    }
+    .path-card.pf-coming-soon .path-name { color: var(--fg-dim); }
+
+    @media (max-width: 480px) {
+      .paths { gap: 1rem; }
+      .path-card { width: 140px; padding: 1.5rem 1rem; }
+      .path-icon { font-size: 1.3rem; }
+      .path-name { font-size: 0.85rem; }
+    }
+  </style>
 </head>
 <body>
 
   <main class="screen" id="screen">
     <h1 class="title" id="title">Leinster Media</h1>
-    <nav class="menu" id="menu" aria-label="Site navigation">
-      <a class="menu-item" href="packages.html">packages</a>
-      <a class="menu-item" href="portfolio.html">portfolio</a>
-      <a class="menu-item" href="results.html">results</a>
-      <a class="menu-item" href="contact.html">contact</a>
-    </nav>
+
+    <div class="paths" id="paths">
+      <button class="path-card" onclick="window.location.href='real-estate.html'">
+        <span class="path-icon">🏠</span>
+        <span class="path-name">Real Estate</span>
+      </button>
+      <button class="path-card" id="tradeCard" onclick="handleTradeClick()">
+        <span class="path-icon">🔧</span>
+        <span class="path-name" id="tradeLabel">Trade Services</span>
+      </button>
+    </div>
   </main>
+
+  <!-- Presence of this file gates Trade Services behind "coming soon".
+       Delete trade-gate.js from the repo and the gate disappears automatically —
+       no other file needs to change. -->
+  <script src="trade-gate.js" onerror="window.__tradeGateMissing = true"></script>
 
   <script src="brand.js"></script>
   <script>
     const screenEl = document.getElementById('screen');
     const title = document.getElementById('title');
-    const menu = document.getElementById('menu');
-    const menuItems = document.querySelectorAll('#menu .menu-item');
+    const paths = document.getElementById('paths');
 
     screenEl.classList.add('show');
 
@@ -36,10 +98,7 @@
       setTimeout(() => {
         title.classList.add('rise');
         setTimeout(() => {
-          menu.style.opacity = '1';
-          menuItems.forEach((item, i) => {
-            setTimeout(() => item.classList.add('show'), i * 130);
-          });
+          paths.classList.add('show');
           armSecretTap();
         }, 400);
       }, 300);
@@ -52,6 +111,40 @@
         if (now - lastTap < 400) window.location.href = 'dashboard.html';
         lastTap = now;
       });
+    }
+
+    // ── Trade Services gate ──
+    // Gate is "active" if trade-gate.js loaded successfully (window.TRADE_GATE_ACTIVE === true)
+    // and the person hasn't already unlocked it on this device.
+    function gateIsActive() {
+      return window.TRADE_GATE_ACTIVE === true && localStorage.getItem('lm_trade_unlocked') !== '1';
+    }
+
+    let tradeLastTap = 0;
+
+    function handleTradeClick() {
+      if (!gateIsActive()) {
+        window.location.href = 'trade.html';
+        return;
+      }
+
+      const card = document.getElementById('tradeCard');
+      const label = document.getElementById('tradeLabel');
+
+      // First tap after gating: show "Coming soon"
+      if (!card.classList.contains('pf-coming-soon')) {
+        card.classList.add('pf-coming-soon');
+        label.textContent = 'Coming soon';
+        return;
+      }
+
+      // Already showing "Coming soon" — check for double-tap to bypass
+      const now = Date.now();
+      if (now - tradeLastTap < 450) {
+        localStorage.setItem('lm_trade_unlocked', '1');
+        window.location.href = 'trade.html';
+      }
+      tradeLastTap = now;
     }
   </script>
 </body>

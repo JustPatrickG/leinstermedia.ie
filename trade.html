@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>LM Trade Services</title>
+  <meta name="description" content="Short-form video and paid lead generation for trade businesses across Leinster." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <a class="back-link" href="index.html">&larr; back</a>
+
+  <main class="screen" id="screen">
+    <h1 class="title" id="title">Leinster Media</h1>
+    <nav class="menu" id="menu" aria-label="Site navigation">
+      <a class="menu-item" href="trade-packages.html">packages</a>
+      <a class="menu-item" href="trade-portfolio.html">portfolio</a>
+      <a class="menu-item" href="trade-results.html">results</a>
+      <a class="menu-item" href="trade-contact.html">contact</a>
+    </nav>
+  </main>
+
+  <script src="brand.js"></script>
+  <script>
+    const screenEl = document.getElementById('screen');
+    const title = document.getElementById('title');
+    const menu = document.getElementById('menu');
+    const menuItems = document.querySelectorAll('#menu .menu-item');
+
+    screenEl.classList.add('show');
+
+    growBrandTitle(title, () => {
+      setTimeout(() => {
+        title.classList.add('rise');
+        setTimeout(() => {
+          menu.style.opacity = '1';
+          menuItems.forEach((item, i) => {
+            setTimeout(() => item.classList.add('show'), i * 130);
+          });
+        }, 400);
+      }, 300);
+    }, 'LM Trade Services', [0, 1]);
+  </script>
+</body>
+</html>

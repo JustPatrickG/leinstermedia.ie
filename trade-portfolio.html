@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Portfolio — LM Trade Services</title>
+  <meta name="description" content="A look at recent job videos from LM Trade Services." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .portfolio-tile {
+      aspect-ratio: 9/16;
+      background: var(--fg-faint2, #1a1a1a);
+      border: 1px solid var(--fg-faint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; color: var(--fg-dim);
+      text-align: center; padding: 1rem; line-height: 1.5;
+    }
+    @media (max-width: 500px) {
+      .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <h1 class="title" id="loaderTitle">Leinster Media</h1>
+  </div>
+
+  <a class="back-link" href="trade.html">&larr; back</a>
+
+  <main class="screen" id="screen">
+    <div class="page-wrap">
+
+      <div class="section">
+        <span class="eyebrow">Portfolio</span>
+        <h1 class="section-heading">Recent job videos</h1>
+        <p class="body-text">A sample of the kind of content we produce — real jobs, real footage, edited for social and ads.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-tile">Consumer unit upgrade — before/after</div>
+        <div class="portfolio-tile">Outdoor socket install — live job</div>
+        <div class="portfolio-tile">EV charger fit — customer walkthrough</div>
+        <div class="portfolio-tile">Rewire progress — day one to done</div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="cta-block">
+        <p class="body-text">Want content like this for your own jobs? First shoot is free.</p>
+        <a class="cta-link" href="trade-contact.html">Get in touch &rarr;</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="brand.js"></script>
+  <script>
+    const loader = document.getElementById('loader');
+    const loaderTitle = document.getElementById('loaderTitle');
+    const screenEl = document.getElementById('screen');
+    growBrandTitle(loaderTitle, () => {
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        screenEl.classList.add('show');
+        setTimeout(() => loader.remove(), 480);
+      }, 500);
+    }, 'LM Trade Services', [0, 1]);
+  </script>
+</body>
+</html>

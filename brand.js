@@ -3,13 +3,16 @@
  * Characters are hidden (0 width) until revealed, growing outward from
  * anchor letters visible from the start — so the growth reads as a snap.
  *
- * Target string: "Leinster Media"
- * Anchors: L (0), M (9) — the initials, visible at start and read as "LM".
+ * Default target string: "Leinster Media"
+ * Default anchors: L (0), M (9) — the initials, visible at start and read as "LM".
  * Everything else grows outward from those two letters.
+ *
+ * Optional params let other pages (e.g. Trade Services) reuse the same
+ * animation with a different string, without touching any existing call site.
  */
-function growBrandTitle(titleEl, onDone) {
-  const FULL = 'Leinster Media';
-  const ANCHOR_INDICES = [0, 9]; // L, M
+function growBrandTitle(titleEl, onDone, fullText, anchorIndices) {
+  const FULL = fullText || 'Leinster Media';
+  const ANCHOR_INDICES = anchorIndices || [0, 9]; // L, M
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   titleEl.textContent = '';

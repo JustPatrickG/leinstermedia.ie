@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Results — LM Trade Services</title>
+  <meta name="description" content="Real results from LM Trade Services campaigns — calls, leads, and cost-per-lead." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22monospace%22>lm</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <h1 class="title" id="loaderTitle">Leinster Media</h1>
+  </div>
+
+  <a class="back-link" href="trade.html">&larr; back</a>
+
+  <main class="screen" id="screen">
+    <div class="page-wrap">
+
+      <div class="section">
+        <span class="eyebrow">Numbers</span>
+        <h1 class="section-heading">What the campaigns actually do</h1>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">€4.10</span>
+            <span class="stat-label">avg. cost per lead</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">24</span>
+            <span class="stat-label">avg. calls per month</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3.6×</span>
+            <span class="stat-label">more callouts vs organic only</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="section">
+        <span class="eyebrow">Campaign snapshot</span>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <span class="result-meta">Electrician · Kildare town · Full funnel</span>
+            <p class="result-headline">Went from word-of-mouth only to 24 booked callouts in the first month.</p>
+            <div class="result-nums">
+              <div class="result-num">
+                <span class="result-n">€3.90</span>
+                <span class="result-nl">cost per lead</span>
+              </div>
+              <div class="result-num">
+                <span class="result-n">24</span>
+                <span class="result-nl">leads</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="cta-block">
+        <p class="body-text">First shoot is free. No commitment until you've seen the content.</p>
+        <a class="cta-link" href="trade-contact.html">Start with a free shoot &rarr;</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="brand.js"></script>
+  <script>
+    const loader = document.getElementById('loader');
+    const loaderTitle = document.getElementById('loaderTitle');
+    const screenEl = document.getElementById('screen');
+    growBrandTitle(loaderTitle, () => {
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        screenEl.classList.add('show');
+        setTimeout(() => loader.remove(), 480);
+      }, 500);
+    }, 'LM Trade Services', [0, 1]);
+  </script>
+</body>
+</html>
